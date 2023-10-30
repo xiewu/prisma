@@ -1,7 +1,7 @@
 import { ClientEngineType, getClientEngineType } from '@prisma/internals'
 import { copycat } from '@snaplet/copycat'
 
-import { ProviderFlavors } from '../_utils/providers'
+import { ProviderFlavors, Providers } from '../_utils/providers'
 import { NewPrismaClient } from '../_utils/types'
 import testMatrix from './_matrix'
 // @ts-ignore
@@ -164,6 +164,46 @@ testMatrix.setupTestSuite(({ provider, providerFlavor }, _suiteMeta, clientMeta)
     })
 
     await expect(result).resolves.toHaveLength(2)
+  })
+
+  /**
+   * If a parent transaction is rolled back, the child transaction should also rollback
+   * - This is only supported in SQL derived servers
+   */
+  testIf(provider !== Providers.MONGODB)('sql: nested rollback', async () => {
+    const email1 = 'user_' + Math.floor(Math.random() * 1000) + '@website.com'
+    const email2 = 'user_' + Math.floor(Math.random() * 1000) + '@website.com'
+    await expect(
+      prisma.$transaction(async (tx) => {
+        await tx.user.create({
+          data: {
+            email: email1,
+          },
+        })
+
+        await prisma.$transaction(async (tx) => {
+          await tx.user.create({
+            data: {
+              email: email2,
+            },
+          })
+        })
+
+        // Abort the outer transaction
+        throw new Error('Rollback')
+      }),
+    ).rejects.toThrow()
+
+    const result = await prisma.user.findMany({
+      where: {
+        email: {
+          in: [email1, email2],
+        },
+      },
+    })
+
+    // Both transactions should rollback
+    expect(result).toHaveLength(0)
   })
 
   /**
