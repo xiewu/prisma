@@ -173,7 +173,7 @@
     }
   },
   "dependencies": {
-    "@prisma/engines-version": "5.6.0-5.6dda9d7a540d41932067b8c8308e086f55f7dded"
+    "@prisma/engines-version": "5.6.0-14.integration-sql-nested-transactions-5a0f60fe78f2029f692e21ce8732a978466b9baf"
   },
   "sideEffects": false
 }
