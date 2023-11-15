@@ -18,7 +18,7 @@ export const adapterConfig: BuildOptions[] = [
     entryPoints: ['src/index.ts'],
     outfile: 'dist/index',
     outExtension: { '.js': '.mjs' },
-    emitTypes: true,
+    emitTypes: false,
     packages: 'external',
   },
 ]
