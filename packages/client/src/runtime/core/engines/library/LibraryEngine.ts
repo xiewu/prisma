@@ -89,6 +89,8 @@ export class LibraryEngine extends Engine<undefined> {
       }
     } else {
       // any other build using LibraryEngine, only wasm engine can be used
+      // For RN the libraryLoader will not be called, so it's safe to fallthrough
+      // TODO(osp, pierre) check if there is a more elegant way to satisfy typescript
       this.libraryLoader = libraryLoader ?? wasmLibraryLoader
     }
 
@@ -153,11 +155,14 @@ export class LibraryEngine extends Engine<undefined> {
         isolation_level: arg?.isolationLevel,
       })
 
-      result = await this.engine?.startTransaction(jsonOptions, headerStr)
+      // @ts-ignore
+      result = await __PrismaProxy.startTransaction(this.engine, jsonOptions, headerStr)
     } else if (action === 'commit') {
-      result = await this.engine?.commitTransaction(arg.id, headerStr)
+      // @ts-ignore
+      result = await __PrismaProxy.commitTransaction(this.engine, arg.id, headerStr)
     } else if (action === 'rollback') {
-      result = await this.engine?.rollbackTransaction(arg.id, headerStr)
+      // @ts-ignore
+      result = await __PrismaProxy.rollbackTransaction(this.engine, arg.id, headerStr)
     }
 
     const response = this.parseEngineResponse<{ [K: string]: unknown }>(result)
@@ -232,6 +237,33 @@ You may have to run ${green('prisma generate')} for your changes to take effect.
 
   private async loadEngine(): Promise<void> {
     if (!this.engine) {
+      // @ts-ignore
+      if (TARGET_BUILD_TYPE === 'rn') {
+        // @ts-expect-error
+        if (!__PrismaProxy) {
+          throw new PrismaClientInitializationError(
+            '__PrismaProxy not detected make sure rn bindings are installed',
+            this.config.clientVersion!,
+          )
+        }
+        // @ts-ignore
+        this.engine = __PrismaProxy.create(this.datamodel)
+        // @ts-ignore
+        __PrismaProxy.setupDB(this.engine, this.datamodel)
+        // {
+        //   datamodel: this.datamodel,
+        //   env: process.env,
+        //   logQueries: this.config.logQueries ?? false,
+        //   ignoreEnvVarErrors: true,
+        //   datasourceOverrides: this.datasourceOverrides ?? {},
+        //   logLevel: this.logLevel,
+        //   configDir: this.config.cwd,
+        //   engineProtocol: 'json',
+        // },
+        engineInstanceCount++
+        return
+      }
+
       if (!this.QueryEngineConstructor) {
         this.library = await this.libraryLoader.loadLibrary(this.config)
         this.QueryEngineConstructor = this.library.QueryEngine
@@ -371,7 +403,9 @@ You may have to run ${green('prisma generate')} for your changes to take effect.
           traceparent: this.config.tracingHelper.getTraceParent(),
         }
 
-        await this.engine?.connect(JSON.stringify(headers))
+        if (TARGET_BUILD_TYPE !== 'rn') {
+          await this.engine?.connect(JSON.stringify(headers))
+        }
 
         this.libraryStarted = true
 
@@ -418,7 +452,12 @@ You may have to run ${green('prisma generate')} for your changes to take effect.
         traceparent: this.config.tracingHelper.getTraceParent(),
       }
 
-      await this.engine?.disconnect(JSON.stringify(headers))
+      if (TARGET_BUILD_TYPE === 'rn') {
+        // @ts-ignore
+        __PrismaProxy.disconnect(this.engine, JSON.stringify(headers))
+      } else {
+        await this.engine?.disconnect(JSON.stringify(headers))
+      }
 
       this.libraryStarted = false
       this.libraryStoppingPromise = undefined
@@ -452,10 +491,21 @@ You may have to run ${green('prisma generate')} for your changes to take effect.
 
     try {
       await this.start()
-      this.executingQueryPromise = this.engine?.query(queryStr, headerStr, interactiveTransaction?.id)
+      if (TARGET_BUILD_TYPE === 'rn') {
+        //@ts-ignore
+        this.executingQueryPromise = __PrismaProxy.execute(this.engine, queryStr, headerStr, interactiveTransaction?.id)
+      } else {
+        this.executingQueryPromise = this.engine?.query(queryStr, headerStr, interactiveTransaction?.id)
+      }
 
       this.lastQuery = queryStr
-      const data = this.parseEngineResponse<any>(await this.executingQueryPromise)
+      let data: any
+      if (TARGET_BUILD_TYPE === 'rn') {
+        //@ts-ignore
+        data = this.parseEngineResponse<any>(this.executingQueryPromise)
+      } else {
+        data = this.parseEngineResponse<any>(await this.executingQueryPromise)
+      }
 
       if (data.errors) {
         if (data.errors.length === 1) {
@@ -497,11 +547,21 @@ You may have to run ${green('prisma generate')} for your changes to take effect.
     await this.start()
 
     this.lastQuery = JSON.stringify(request)
-    this.executingQueryPromise = this.engine!.query(
-      this.lastQuery,
-      JSON.stringify({ traceparent }),
-      getInteractiveTransactionId(transaction),
-    )
+    if (TARGET_BUILD_TYPE === 'rn') {
+      // @ts-ignore
+      this.executingQueryPromise = __PrismaProxy.execute(
+        this.engine,
+        this.lastQuery,
+        JSON.stringify({ traceparent }),
+        getInteractiveTransactionId(transaction),
+      )
+    } else {
+      this.executingQueryPromise = this.engine!.query(
+        this.lastQuery,
+        JSON.stringify({ traceparent }),
+        getInteractiveTransactionId(transaction),
+      )
+    }
     const result = await this.executingQueryPromise
     const data = this.parseEngineResponse<any>(result)
 

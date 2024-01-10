@@ -38,7 +38,7 @@ export interface GenerateClientOptions {
   datamodel: string
   schemaPath: string
   transpile?: boolean
-  runtimeDirs?: { node: string; edge: string }
+  runtimeDirs?: { node: string; edge: string; rn: string }
   outputDir: string
   generator?: GeneratorConfig
   dmmf: DMMF.Document
@@ -112,6 +112,13 @@ export async function buildClient({
     runtimeDir: runtimeDirs.edge,
   })
 
+  // we create a client that is fit for edge runtimes
+  const rnTsClient = new TSClient({
+    ...tsClientOptions,
+    runtimeName: 'rn',
+    runtimeDir: runtimeDirs.rn,
+  })
+
   const fileMap = {} // we will store the generated contents here
 
   // we generate the default client that is meant to work on Node
@@ -132,6 +139,12 @@ export async function buildClient({
 
   fileMap['edge.js'] = await JS(edgeTsClient, true)
   fileMap['edge.d.ts'] = await TS(edgeTsClient, true)
+
+  // TODO(osp) the prisma extension does not recognize this preview feature
+  // if (generator?.previewFeatures.includes('reactNative')) {
+  fileMap['rn.js'] = await JS(rnTsClient, true)
+  fileMap['rn.d.ts'] = await TS(rnTsClient, true)
+  // }
 
   if (generator?.previewFeatures.includes('deno') && !!globalThis.Deno) {
     // we create a client that is fit for edge runtimes
@@ -303,7 +316,7 @@ export async function generateClient(options: GenerateClientOptions): Promise<vo
       let target: string
 
       // Introduced in https://github.com/prisma/prisma/pull/6527
-      // The engines that are not needed for the runtime deployment on AWS Lambda 
+      // The engines that are not needed for the runtime deployment on AWS Lambda
       // are moved to `/tmp/prisma-engines`
       // They will be ignored and not included in the final build, reducing its size
       if (process.env.NETLIFY && !['rhel-openssl-1.0.x', 'rhel-openssl-3.0.x'].includes(binaryTarget)) {
@@ -460,6 +473,7 @@ async function getGenerationDirs({
     // if we have an override, we use it, but if not then use the defaults
     node: runtimeDirs?.node || (useDefaultOutdir ? '@prisma/client/runtime' : './runtime'),
     edge: runtimeDirs?.edge || (useDefaultOutdir ? '@prisma/client/runtime' : './runtime'),
+    rn: runtimeDirs?.rn || (useDefaultOutdir ? '@prisma/client/runtime' : './runtime'),
   }
 
   const finalOutputDir = useDefaultOutdir ? await getDefaultOutdir(outputDir) : outputDir
@@ -565,6 +579,7 @@ async function copyRuntimeFiles({ from, to, runtimeName, sourceMaps }: CopyRunti
     'index-browser.d.ts',
     'edge.js',
     'edge-esm.js',
+    'rn.js',
   ]
 
   files.push(`${runtimeName}.js`)
