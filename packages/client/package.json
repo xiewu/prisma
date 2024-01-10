@@ -69,6 +69,8 @@
     "edge.d.ts",
     "index.js",
     "index.d.ts",
+    "rn.js",
+    "rn.d.ts",
     "index-browser.js",
     "extension.js",
     "extension.d.ts"
