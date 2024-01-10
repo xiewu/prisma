@@ -58,7 +58,7 @@ export class LibraryEngine extends Engine<undefined> {
   private executingQueryPromise?: Promise<any>
   private config: EngineConfig
   private QueryEngineConstructor?: QueryEngineConstructor
-  private libraryLoader?: LibraryLoader
+  private libraryLoader: LibraryLoader
   private library?: Library
   private logEmitter: LogEmitter
   libQueryEnginePath?: string
@@ -81,7 +81,14 @@ export class LibraryEngine extends Engine<undefined> {
     const engineType = getClientEngineType(config.generator!)
 
     if (TARGET_BUILD_TYPE === 'rn') {
-      // intentionally left empty, rn bindings will be loaded by user
+      // dummy library, should never be called
+      this.libraryLoader = {
+        loadLibrary() {
+          throw new Error(
+            'React Native bindings cannot be loaded from inside this library, import react-native-prisma on user code',
+          )
+        },
+      }
     } else if (TARGET_BUILD_TYPE === 'library') {
       // for "library" builds, we can use both the wasm and native engines
       if (engineType === ClientEngineType.Wasm) {
@@ -267,8 +274,8 @@ You may have to run ${green('prisma generate')} for your changes to take effect.
       }
 
       if (!this.QueryEngineConstructor) {
-        this.library = await this.libraryLoader?.loadLibrary(this.config)
-        this.QueryEngineConstructor = this.library?.QueryEngine
+        this.library = await this.libraryLoader.loadLibrary(this.config)
+        this.QueryEngineConstructor = this.library.QueryEngine
       }
       try {
         // Using strong reference to `this` inside of log callback will prevent
@@ -282,24 +289,22 @@ You may have to run ${green('prisma generate')} for your changes to take effect.
           debug('Using driver adapter: %O', adapter)
         }
 
-        if (this.QueryEngineConstructor) {
-          this.engine = new this.QueryEngineConstructor(
-            {
-              datamodel: this.datamodel,
-              env: process.env,
-              logQueries: this.config.logQueries ?? false,
-              ignoreEnvVarErrors: true,
-              datasourceOverrides: this.datasourceOverrides ?? {},
-              logLevel: this.logLevel,
-              configDir: this.config.cwd,
-              engineProtocol: 'json',
-            },
-            (log) => {
-              weakThis.deref()?.logger(log)
-            },
-            adapter,
-          )
-        }
+        this.engine = new this.QueryEngineConstructor(
+          {
+            datamodel: this.datamodel,
+            env: process.env,
+            logQueries: this.config.logQueries ?? false,
+            ignoreEnvVarErrors: true,
+            datasourceOverrides: this.datasourceOverrides ?? {},
+            logLevel: this.logLevel,
+            configDir: this.config.cwd,
+            engineProtocol: 'json',
+          },
+          (log) => {
+            weakThis.deref()?.logger(log)
+          },
+          adapter,
+        )
         engineInstanceCount++
       } catch (_e) {
         const e = _e as Error
