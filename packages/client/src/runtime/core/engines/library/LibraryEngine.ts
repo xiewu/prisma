@@ -260,6 +260,7 @@ You may have to run ${green('prisma generate')} for your changes to take effect.
         this.engine = __PrismaProxy.create({
           datamodel: this.datamodel,
           logLevel: this.logLevel,
+          logQueries: this.config.logQueries ?? false,
           logCallback: (log: string) => {
             weakThis.deref()?.logger(log)
           },
@@ -269,7 +270,6 @@ You may have to run ${green('prisma generate')} for your changes to take effect.
         // {
         //   datamodel: this.datamodel,
         //   env: process.env,
-        //   logQueries: this.config.logQueries ?? false,
         //   ignoreEnvVarErrors: true,
         //   datasourceOverrides: this.datasourceOverrides ?? {},
         //   logLevel: this.logLevel,
