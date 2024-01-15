@@ -246,8 +246,9 @@ You may have to run ${green('prisma generate')} for your changes to take effect.
 
   private async loadEngine(): Promise<void> {
     if (!this.engine) {
-      // @ts-ignore
       if (TARGET_BUILD_TYPE === 'rn') {
+        const weakThis = new WeakRef(this)
+
         // @ts-expect-error
         if (!__PrismaProxy) {
           throw new PrismaClientInitializationError(
@@ -256,7 +257,13 @@ You may have to run ${green('prisma generate')} for your changes to take effect.
           )
         }
         // @ts-ignore
-        this.engine = __PrismaProxy.create(this.datamodel)
+        this.engine = __PrismaProxy.create({
+          datamodel: this.datamodel,
+          logLevel: this.logLevel,
+          logCallback: (log: string) => {
+            weakThis.deref()?.logger(log)
+          },
+        })
         // @ts-ignore
         __PrismaProxy.setupDB(this.engine, this.datamodel)
         // {
