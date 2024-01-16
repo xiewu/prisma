@@ -413,7 +413,10 @@ You may have to run ${green('prisma generate')} for your changes to take effect.
           traceparent: this.config.tracingHelper.getTraceParent(),
         }
 
-        if (TARGET_BUILD_TYPE !== 'rn') {
+        if (TARGET_BUILD_TYPE === 'rn') {
+          // @ts-ignore
+          __PrismaProxy.connect(this.engine, JSON.stringify(headers))
+        } else {
           await this.engine?.connect(JSON.stringify(headers))
         }
 
