@@ -259,6 +259,9 @@ You may have to run ${green('prisma generate')} for your changes to take effect.
         // @ts-ignore
         this.engine = __PrismaProxy.create({
           datamodel: this.datamodel,
+          env: process.env,
+          ignoreEnvVarErrors: true,
+          datasourceOverrides: this.datasourceOverrides ?? {},
           logLevel: this.logLevel,
           logQueries: this.config.logQueries ?? false,
           logCallback: (log: string) => {
@@ -267,15 +270,6 @@ You may have to run ${green('prisma generate')} for your changes to take effect.
         })
         // @ts-ignore
         __PrismaProxy.setupDB(this.engine, this.datamodel)
-        // {
-        //   datamodel: this.datamodel,
-        //   env: process.env,
-        //   ignoreEnvVarErrors: true,
-        //   datasourceOverrides: this.datasourceOverrides ?? {},
-        //   logLevel: this.logLevel,
-        //   configDir: this.config.cwd,
-        //   engineProtocol: 'json',
-        // },
         engineInstanceCount++
         return
       }
