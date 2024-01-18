@@ -270,6 +270,10 @@ You may have to run ${green('prisma generate')} for your changes to take effect.
         })
         // @ts-ignore
         __PrismaProxy.setupDB(this.engine, this.datamodel)
+
+        // TODO(osp/pierre) we need to expose this call to the prisma client so users have control when the migration is run
+        // @ts-ignore
+        __PrismaProxy.migrate(this.engine)
         engineInstanceCount++
         return
       }
