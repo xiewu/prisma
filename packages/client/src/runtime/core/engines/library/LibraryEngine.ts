@@ -55,7 +55,7 @@ export class LibraryEngine extends Engine<undefined> {
   private libraryStartingPromise?: Promise<void>
   private libraryStoppingPromise?: Promise<void>
   private libraryStarted: boolean
-  private executingQueryPromise?: Promise<any>
+  private executingQueryPromise?: Promise<string>
   private config: EngineConfig
   private QueryEngineConstructor?: QueryEngineConstructor
   private libraryLoader: LibraryLoader
@@ -268,12 +268,10 @@ You may have to run ${green('prisma generate')} for your changes to take effect.
             weakThis.deref()?.logger(log)
           },
         })
-        // @ts-ignore
-        __PrismaProxy.setupDB(this.engine, this.datamodel)
 
         // TODO(osp/pierre) we need to expose this call to the prisma client so users have control when the migration is run
         // @ts-ignore
-        __PrismaProxy.migrate(this.engine)
+        __PrismaProxy.migrate(this.engine, this.datamodel)
         engineInstanceCount++
         return
       }
@@ -510,19 +508,18 @@ You may have to run ${green('prisma generate')} for your changes to take effect.
       await this.start()
       if (TARGET_BUILD_TYPE === 'rn') {
         //@ts-ignore
-        this.executingQueryPromise = __PrismaProxy.execute(this.engine, queryStr, headerStr, interactiveTransaction?.id)
+        this.executingQueryPromise = __PrismaProxy.execute(
+          this.engine,
+          queryStr,
+          headerStr,
+          interactiveTransaction?.id,
+        ) as Promise<string>
       } else {
         this.executingQueryPromise = this.engine?.query(queryStr, headerStr, interactiveTransaction?.id)
       }
 
       this.lastQuery = queryStr
-      let data: any
-      if (TARGET_BUILD_TYPE === 'rn') {
-        //@ts-ignore
-        data = this.parseEngineResponse<any>(this.executingQueryPromise)
-      } else {
-        data = this.parseEngineResponse<any>(await this.executingQueryPromise)
-      }
+      const data = this.parseEngineResponse<any>(await this.executingQueryPromise)
 
       if (data.errors) {
         if (data.errors.length === 1) {
