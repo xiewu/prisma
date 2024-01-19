@@ -306,6 +306,22 @@ function runCommandRawDefinition(this: PrismaClientClass) {
   return ts.stringify(method, { indentLevel: 1, newLine: 'leading' })
 }
 
+function applyPendingMigrationsDefinition(this: PrismaClientClass) {
+  const method = ts.method('$applyPendingMigrations').setDocComment(ts.docComment`
+    Tries to apply pending migrations to the database.
+  `)
+
+  return ts.stringify(method, { indentLevel: 1, newLine: 'leading' })
+}
+
+function pushSchemaDefinition(this: PrismaClientClass) {
+  const method = ts.method('$pushSchema').setDocComment(ts.docComment`
+    Will try to bring the database structure up to date to your schema. Data might be lost.
+  `)
+
+  return ts.stringify(method, { indentLevel: 1, newLine: 'leading' })
+}
+
 function eventRegistrationMethodDeclaration(runtimeName: string) {
   if (runtimeName === 'binary') {
     return `$on<V extends (U | 'beforeExit')>(eventType: V, callback: (event: V extends 'query' ? Prisma.QueryEvent : V extends 'beforeExit' ? () => $Utils.JsPromise<void> : Prisma.LogEvent) => void): void;`
@@ -388,6 +404,8 @@ ${[
   interactiveTransactionDefinition.bind(this)(),
   runCommandRawDefinition.bind(this)(),
   metricDefinition.bind(this)(),
+  applyPendingMigrationsDefinition.bind(this)(),
+  pushSchemaDefinition.bind(this)(),
   this.clientExtensionsDefinitions.prismaClientDefinitions,
 ]
   .join('\n')
