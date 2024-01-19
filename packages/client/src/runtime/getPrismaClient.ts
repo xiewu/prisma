@@ -943,6 +943,14 @@ Or read our docs at https://www.prisma.io/docs/concepts/components/prisma-client
       return !!this._engineConfig.previewFeatures?.includes(feature)
     }
 
+    $applyPendingMigrations() {
+      return this._engine.applyPendingMigrations()
+    }
+
+    $pushSchema() {
+      return this._engine.pushSchema()
+    }
+
     $extends = $extends
   }
 

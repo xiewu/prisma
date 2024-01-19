@@ -136,6 +136,27 @@ export class LibraryEngine extends Engine<undefined> {
     }
   }
 
+  async applyPendingMigrations(): Promise<void> {
+    if (TARGET_BUILD_TYPE === 'rn') {
+      await this.start()
+      // TODO handle the throw error gracefully? Not sure need to ask pierre
+      // @ts-ignore
+      __PrismaProxy.applyPendingMigrations(this.engine, this.datamodel)
+    } else {
+      throw new Error('Cannot call this method from this type of engine instance')
+    }
+  }
+
+  async pushSchema(): Promise<void> {
+    if (TARGET_BUILD_TYPE === 'rn') {
+      await this.start()
+      // @ts-ignore
+      __PrismaProxy.pushSchema(this.engine, this.datamodel)
+    } else {
+      throw new Error('Cannot call this method from this type of engine instance')
+    }
+  }
+
   async transaction(
     action: 'start',
     headers: Tx.TransactionHeaders,
@@ -269,9 +290,6 @@ You may have to run ${green('prisma generate')} for your changes to take effect.
           },
         })
 
-        // TODO(osp/pierre) we need to expose this call to the prisma client so users have control when the migration is run
-        // @ts-ignore
-        __PrismaProxy.migrate(this.engine, this.datamodel)
         engineInstanceCount++
         return
       }

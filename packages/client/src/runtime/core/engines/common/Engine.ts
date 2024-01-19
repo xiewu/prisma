@@ -85,6 +85,11 @@ export abstract class Engine<InteractiveTransactionPayload = unknown> {
 
   abstract metrics(options: MetricsOptionsJson): Promise<Metrics>
   abstract metrics(options: MetricsOptionsPrometheus): Promise<string>
+
+  // Methods dedicated for the C/RN engine, other versions should throw error
+  abstract applyPendingMigrations(): void
+  abstract pushSchema(): void
+  // abstract getMigrationHistory(): void
 }
 
 export interface EngineConfig {
