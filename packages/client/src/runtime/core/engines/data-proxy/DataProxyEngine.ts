@@ -579,4 +579,12 @@ export class DataProxyEngine extends Engine<DataProxyTxInfoPayload> {
       throw error
     }
   }
+
+  applyPendingMigrations(): void {
+    throw new Error('Method not implemented.')
+  }
+
+  pushSchema(): void {
+    throw new Error('Method not implemented.')
+  }
 }
