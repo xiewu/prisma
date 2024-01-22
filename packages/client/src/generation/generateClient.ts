@@ -112,7 +112,7 @@ export async function buildClient({
     runtimeDir: runtimeDirs.edge,
   })
 
-  // we create a client that is fit for edge runtimes
+  // we create a client that is fit for react native runtimes
   const rnTsClient = new TSClient({
     ...tsClientOptions,
     runtimeName: 'rn',

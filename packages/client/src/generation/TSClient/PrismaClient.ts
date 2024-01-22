@@ -307,17 +307,33 @@ function runCommandRawDefinition(this: PrismaClientClass) {
 }
 
 function applyPendingMigrationsDefinition(this: PrismaClientClass) {
-  const method = ts.method('$applyPendingMigrations').setDocComment(ts.docComment`
-    Tries to apply pending migrations to the database.
+  const method = ts.method('$applyPendingMigrations')
+
+  if (this.runtimeName !== 'rn') {
+    method.setDocComment(ts.docComment`
+  Tries to apply pending migrations to the database.
   `)
+  } else {
+    method.setDocComment(
+      ts.docComment`Do not use outside the react native client. This method will always throw an error`,
+    )
+  }
 
   return ts.stringify(method, { indentLevel: 1, newLine: 'leading' })
 }
 
 function pushSchemaDefinition(this: PrismaClientClass) {
-  const method = ts.method('$pushSchema').setDocComment(ts.docComment`
+  const method = ts.method('$pushSchema')
+
+  if (this.runtimeName === 'rn') {
+    method.setDocComment(ts.docComment`
     Will try to bring the database structure up to date to your schema. Data might be lost.
   `)
+  } else {
+    method.setDocComment(
+      ts.docComment`Do not use outside of the react native client. This method will always throw an error`,
+    )
+  }
 
   return ts.stringify(method, { indentLevel: 1, newLine: 'leading' })
 }
