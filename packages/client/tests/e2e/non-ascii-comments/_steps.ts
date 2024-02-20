@@ -8,6 +8,7 @@ void executeSteps({
   },
   test: async () => {
     await $`pnpm prisma generate`
+    await $`pnpm jest`
   },
   finish: async () => {
     await $`echo "done"`
