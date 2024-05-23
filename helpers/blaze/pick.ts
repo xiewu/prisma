@@ -8,12 +8,14 @@ import { select } from './select'
 type KeyMap = { [key: A.Key]: boolean }
 
 function pickList<T extends L.List, K extends A.Key>(object: T, keys: K[]) {
+  // eslint-disable-next-line no-constant-binary-expression
   const _keys = reduce(keys, (acc, key) => (acc[key] = true) && acc, {} as KeyMap)
 
   return select(object, (item, key) => key in _keys)
 }
 
 function pickObject<T extends O.Object, K extends A.Key>(object: T, keys: K[]) {
+  // eslint-disable-next-line no-constant-binary-expression
   const _keys = reduce(keys, (acc, key) => (acc[key] = true) && acc, {} as KeyMap)
 
   return select(object, (item, key) => key in _keys)
