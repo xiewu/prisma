@@ -2,7 +2,7 @@ import { Providers } from '../../_utils/providers'
 import { NewPrismaClient } from '../../_utils/types'
 import testMatrix from './_matrix'
 // @ts-ignore
-import type { PrismaClient } from './node_modules/@prisma/client'
+import type { Prisma, PrismaClient } from './node_modules/@prisma/client'
 
 declare let prisma: PrismaClient
 declare let newPrismaClient: NewPrismaClient<typeof PrismaClient>
@@ -16,6 +16,8 @@ const executeOneQuery = async () => {
   })
   await prisma.user.findFirst({ where: { email } })
 }
+
+const sortMetrics = (a: Prisma.Metric<unknown>, b: Prisma.Metric<unknown>) => a.key.localeCompare(b.key)
 
 testMatrix.setupTestSuite(
   ({ provider, driverAdapter }) => {
@@ -38,7 +40,7 @@ testMatrix.setupTestSuite(
         const metricBefore = await prisma.$metrics.json()
         // console.log(JSON.stringify(metricBefore, null, 2))
         const { counters: countersBefore, gauges: gaugesBefore, histograms: histogramsBefore } = metricBefore
-        expect(countersBefore.sort((a, b) => a.key.localeCompare(b.key))).toMatchObject([
+        expect(countersBefore.sort(sortMetrics)).toMatchObject([
           {
             key: 'prisma_client_queries_total',
             labels: {},
@@ -64,7 +66,7 @@ testMatrix.setupTestSuite(
             description: 'The total number of pool connections opened',
           },
         ])
-        expect(gaugesBefore.sort((a, b) => a.key.localeCompare(b.key))).toMatchObject([
+        expect(gaugesBefore.sort(sortMetrics)).toMatchObject([
           {
             key: 'prisma_client_queries_active',
             labels: {},
@@ -103,7 +105,7 @@ testMatrix.setupTestSuite(
         const metricAfter = await prisma.$metrics.json()
         // console.log(JSON.stringify(metricAfter, null, 2))
         const { counters: countersAfter, gauges: gaugesAfter, histograms: histogramsAfter } = metricAfter
-        expect(countersAfter.sort((a, b) => a.key.localeCompare(b.key))).toMatchObject([
+        expect(countersAfter.sort(sortMetrics)).toMatchObject([
           {
             key: 'prisma_client_queries_total',
             labels: {},
@@ -129,7 +131,7 @@ testMatrix.setupTestSuite(
             description: 'The total number of pool connections opened',
           },
         ])
-        expect(gaugesAfter.sort((a, b) => a.key.localeCompare(b.key))).toMatchObject([
+        expect(gaugesAfter.sort(sortMetrics)).toMatchObject([
           {
             key: 'prisma_client_queries_active',
             labels: {},
@@ -161,7 +163,7 @@ testMatrix.setupTestSuite(
             description: 'The number of pool connections currently open',
           },
         ])
-        expect(histogramsAfter.sort((a, b) => a.key.localeCompare(b.key))).toMatchObject([
+        expect(histogramsAfter.sort(sortMetrics)).toMatchObject([
           {
             key: 'prisma_client_queries_duration_histogram_ms',
             labels: {},
@@ -221,7 +223,7 @@ testMatrix.setupTestSuite(
           const metricBefore = await prisma.$metrics.json()
           // console.log(JSON.stringify(metricBefore, null, 2))
           const { counters: countersBefore, gauges: gaugesBefore, histograms: histogramsBefore } = metricBefore
-          expect(countersBefore.sort((a, b) => a.key.localeCompare(b.key))).toMatchObject([
+          expect(countersBefore.sort(sortMetrics)).toMatchObject([
             {
               key: 'prisma_client_queries_total',
               labels: {},
@@ -247,7 +249,7 @@ testMatrix.setupTestSuite(
               description: 'The total number of pool connections opened',
             },
           ])
-          expect(gaugesBefore.sort((a, b) => a.key.localeCompare(b.key))).toMatchObject([
+          expect(gaugesBefore.sort(sortMetrics)).toMatchObject([
             {
               key: 'prisma_client_queries_active',
               labels: {},
@@ -257,10 +259,7 @@ testMatrix.setupTestSuite(
             {
               key: 'prisma_client_queries_wait',
               labels: {},
-              // Our test suite shows that the value can be one too few (=> -1) sometimes
-              // Last seen in `Tests / Client func&legacy-notypes (4/5, library, 20, relationJoins)` run for SQLite, but also happens for other providers.
-              // Tracking issue: https://github.com/prisma/team-orm/issues/1024
-              value: expect.toBeOneOf([-1, 0]),
+              value: 0,
               description: 'The number of datasource queries currently waiting for a free connection',
             },
             {
@@ -272,23 +271,19 @@ testMatrix.setupTestSuite(
             {
               key: 'prisma_pool_connections_idle',
               labels: {},
-              // This can sometimes be reported as 0, 1 or 2,
-              // as metrics are reported asynchronously.
-              // Note: We want to investigate why these different values are reported in our test setup
-              // https://github.com/prisma/team-orm/issues/587
-              value: expect.toBeOneOf([0, 1, 2]),
+              value: 1,
               description: 'The number of pool connections that are not busy running a query',
             },
             {
               key: 'prisma_pool_connections_open',
               labels: {},
-              value: expect.any(Number), // usually the value is 1 but sometimes 0 on Windows CI
+              value: 1,
               description: 'The number of pool connections currently open',
             },
           ])
 
           if (!usesDriverAdapter) {
-            expect(histogramsBefore.sort((a, b) => a.key.localeCompare(b.key))).toMatchObject([
+            expect(histogramsBefore.sort(sortMetrics)).toMatchObject([
               {
                 key: 'prisma_client_queries_wait_histogram_ms',
                 labels: {},
@@ -318,7 +313,7 @@ testMatrix.setupTestSuite(
 
           const metricAfter = await prisma.$metrics.json()
           const { counters: countersAfter, gauges: gaugesAfter, histograms: histogramsAfter } = metricAfter
-          expect(countersAfter.sort((a, b) => a.key.localeCompare(b.key))).toMatchObject([
+          expect(countersAfter.sort(sortMetrics)).toMatchObject([
             {
               key: 'prisma_client_queries_total',
               labels: {},
@@ -344,7 +339,7 @@ testMatrix.setupTestSuite(
               description: 'The total number of pool connections opened',
             },
           ])
-          expect(gaugesAfter.sort((a, b) => a.key.localeCompare(b.key))).toMatchObject([
+          expect(gaugesAfter.sort(sortMetrics)).toMatchObject([
             {
               key: 'prisma_client_queries_active',
               labels: {},
@@ -450,7 +445,7 @@ testMatrix.setupTestSuite(
             },
             description: 'The distribution of the time datasource queries took to run',
           })
-          expect(histogramsAfter.sort((a, b) => a.key.localeCompare(b.key))).toMatchObject(expectedHistograms)
+          expect(histogramsAfter.sort(sortMetrics)).toMatchObject(expectedHistograms)
 
           expect(countersBefore.length).toEqual(countersAfter.length)
           expect(gaugesBefore.length).toEqual(gaugesAfter.length)
