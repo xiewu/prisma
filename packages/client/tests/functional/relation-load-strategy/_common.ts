@@ -1,4 +1,4 @@
-import { allProviders, Providers } from '../_utils/providers'
+import { Providers, allProviders } from '../_utils/providers'
 
 export const providersSupportingRelationJoins = [Providers.POSTGRESQL, Providers.COCKROACHDB, Providers.MYSQL]
 

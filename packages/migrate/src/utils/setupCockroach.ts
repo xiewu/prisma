@@ -1,6 +1,6 @@
-import { credentialsToUri, uriToCredentials } from '@prisma/internals'
 import fs from 'node:fs'
 import path from 'node:path'
+import { credentialsToUri, uriToCredentials } from '@prisma/internals'
 import { Client } from 'pg'
 
 export async function setupCockroach(options: { connectionString: string; dirname: string }): Promise<void> {

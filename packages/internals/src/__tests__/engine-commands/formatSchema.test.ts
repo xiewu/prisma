@@ -1,10 +1,10 @@
-import { jestConsoleContext, jestContext } from '@prisma/get-platform'
 import path from 'node:path'
+import { jestConsoleContext, jestContext } from '@prisma/get-platform'
 import stripAnsi from 'strip-ansi'
 
 import { getSchemaWithPath } from '../../cli/getSchema'
 import { formatSchema } from '../../engine-commands'
-import { extractSchemaContent, type MultipleSchemas } from '../../utils/schemaFileInput'
+import { type MultipleSchemas, extractSchemaContent } from '../../utils/schemaFileInput'
 import { fixturesPath } from '../__utils__/fixtures'
 
 if (process.env.CI) {

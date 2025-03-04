@@ -1,7 +1,7 @@
+import { join, resolve } from 'node:path'
 import { jestConsoleContext, jestContext } from '@prisma/get-platform'
 import { ensureDir } from 'fs-extra'
 import { stdin } from 'mock-stdin'
-import { join, resolve } from 'node:path'
 import prompt from 'prompts'
 import stripAnsi from 'strip-ansi'
 import tempy from 'tempy'

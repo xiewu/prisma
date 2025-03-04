@@ -1,6 +1,6 @@
 import type { PrismaConfigInternal } from '@prisma/config'
 import type { Command, Commands } from '@prisma/internals'
-import { arg, format, HelpError, isError, unknownCommand } from '@prisma/internals'
+import { HelpError, arg, format, isError, unknownCommand } from '@prisma/internals'
 import { bold, red } from 'kleur/colors'
 
 /**

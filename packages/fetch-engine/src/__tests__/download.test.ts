@@ -1,10 +1,10 @@
+import fs from 'node:fs'
+import path from 'node:path'
 import { enginesVersion } from '@prisma/engines-version'
 import { type BinaryTarget, getBinaryTargetForCurrentPlatform } from '@prisma/get-platform'
 import del from 'del'
-import fs from 'node:fs'
 import type { Response } from 'node-fetch'
 import { default as _mockFetch } from 'node-fetch'
-import path from 'node:path'
 import stripAnsi from 'strip-ansi'
 import timeoutSignal from 'timeout-signal'
 

@@ -1,7 +1,7 @@
 import type { PrismaConfigInternal } from '@prisma/config'
 import { ensureBinariesExist } from '@prisma/engines'
 import type { Command, Commands } from '@prisma/internals'
-import { arg, drawBox, format, HelpError, isError, link, logger, unknownCommand } from '@prisma/internals'
+import { HelpError, arg, drawBox, format, isError, link, logger, unknownCommand } from '@prisma/internals'
 import { bold, dim, green, red, underline } from 'kleur/colors'
 
 import { Version } from './Version'

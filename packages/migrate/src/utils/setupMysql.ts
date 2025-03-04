@@ -1,7 +1,7 @@
-import { uriToCredentials } from '@prisma/internals'
 import fs from 'node:fs'
-import mariadb from 'mariadb'
 import path from 'node:path'
+import { uriToCredentials } from '@prisma/internals'
+import mariadb from 'mariadb'
 
 export type SetupParams = {
   connectionString: string

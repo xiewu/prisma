@@ -1,9 +1,9 @@
+import path from 'node:path'
 import { enginesVersion, getCliQueryEngineBinaryType } from '@prisma/engines'
 import { BinaryType, download } from '@prisma/fetch-engine'
 import { getBinaryTargetForCurrentPlatform, jestConsoleContext, jestContext } from '@prisma/get-platform'
 import { engineEnvVarMap } from '@prisma/internals'
 import { ensureDir } from 'fs-extra'
-import path from 'node:path'
 import { version as typeScriptVersion } from 'typescript'
 
 import packageJson from '../../../package.json'

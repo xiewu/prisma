@@ -1,5 +1,5 @@
-import { GLOBAL_INSTRUMENTATION_ACCESSOR_KEY, GLOBAL_VERSIONED_INSTRUMENTATION_ACCESSOR_KEY } from '../constants'
 import { PrismaInstrumentation } from '../PrismaInstrumentation'
+import { GLOBAL_INSTRUMENTATION_ACCESSOR_KEY, GLOBAL_VERSIONED_INSTRUMENTATION_ACCESSOR_KEY } from '../constants'
 
 describe('PrismaInstrumentation', () => {
   const instance = new PrismaInstrumentation()

@@ -1,21 +1,21 @@
+import fs from 'node:fs'
+import path from 'node:path'
 import type { PrismaConfigInternal } from '@prisma/config'
 import {
+  type Command,
+  HelpError,
   arg,
   checkUnsupportedDataProxy,
-  type Command,
   format,
   getCommandWithExecutor,
   getConfig,
   getSchemaWithPath,
-  HelpError,
   isError,
   loadEnvFile,
   toSchemasWithConfigDir,
 } from '@prisma/internals'
-import fs from 'node:fs'
 import getStdin from 'get-stdin'
 import { bold, dim, green, italic } from 'kleur/colors'
-import path from 'node:path'
 
 import { Migrate } from '../Migrate'
 import type { EngineArgs } from '../types'

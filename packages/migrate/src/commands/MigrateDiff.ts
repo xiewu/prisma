@@ -1,12 +1,13 @@
+import path from 'node:path'
 import type { PrismaConfigInternal } from '@prisma/config'
 import Debug from '@prisma/debug'
 import {
+  type Command,
+  HelpError,
   arg,
   checkUnsupportedDataProxy,
-  type Command,
   format,
   getConfig,
-  HelpError,
   isError,
   link,
   loadEnvFile,
@@ -16,7 +17,6 @@ import {
 } from '@prisma/internals'
 import fs from 'fs-jetpack'
 import { bold, dim, green, italic } from 'kleur/colors'
-import path from 'node:path'
 
 import { getSchemaWithPath } from '../../../internals/src/cli/getSchema'
 import { Migrate } from '../Migrate'

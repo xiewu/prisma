@@ -1,9 +1,9 @@
+import fs from 'node:fs'
+import path from 'node:path'
 import { BinaryType, getCacheDir } from '@prisma/fetch-engine'
 import { enginesOverride } from '@prisma/fetch-engine/package.json'
 import { getBinaryTargetForCurrentPlatform } from '@prisma/get-platform'
 import execa from 'execa'
-import fs from 'node:fs'
-import path from 'node:path'
 
 const baseDir = path.join(__dirname, '..', '..')
 

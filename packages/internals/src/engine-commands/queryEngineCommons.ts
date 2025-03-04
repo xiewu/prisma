@@ -1,9 +1,9 @@
-import * as E from 'fp-ts/Either'
-import { identity, pipe } from 'fp-ts/lib/function'
-import * as TE from 'fp-ts/TaskEither'
 import fs from 'node:fs'
+import * as E from 'fp-ts/Either'
+import * as TE from 'fp-ts/TaskEither'
+import { identity, pipe } from 'fp-ts/lib/function'
 import { bold, red } from 'kleur/colors'
-import { match, P } from 'ts-pattern'
+import { P, match } from 'ts-pattern'
 
 import { relativizePathInPSLError } from './relativizePathInPSLError'
 

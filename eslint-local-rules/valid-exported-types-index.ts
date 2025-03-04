@@ -1,6 +1,6 @@
-import { ESLintUtils } from '@typescript-eslint/utils'
 import fs from 'node:fs'
 import path from 'node:path'
+import { ESLintUtils } from '@typescript-eslint/utils'
 
 export default ESLintUtils.RuleCreator.withoutDocs({
   defaultOptions: [],

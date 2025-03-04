@@ -1,8 +1,8 @@
+import fs from 'node:fs'
+import path from 'node:path'
 import Debug from '@prisma/debug'
 import type { EnvPaths } from '@prisma/generator-helper'
 import findUp from 'find-up'
-import fs from 'node:fs'
-import path from 'node:path'
 
 import { getSchemaFromPackageJson } from '../cli/getSchema'
 import { exists } from './tryLoadEnvs'

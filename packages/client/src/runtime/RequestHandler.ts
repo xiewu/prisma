@@ -3,6 +3,12 @@ import Debug from '@prisma/debug'
 import { assertNever } from '@prisma/internals'
 import stripAnsi from 'strip-ansi'
 
+import {
+  PrismaClientInitializationError,
+  PrismaClientKnownRequestError,
+  PrismaClientRustPanicError,
+  PrismaClientUnknownRequestError,
+} from '.'
 import type {
   EngineValidationError,
   InteractiveTransactionOptions,
@@ -10,30 +16,24 @@ import type {
   LogEmitter,
   TransactionOptions,
 } from '../runtime/core/engines'
-import {
-  PrismaClientInitializationError,
-  PrismaClientKnownRequestError,
-  PrismaClientRustPanicError,
-  PrismaClientUnknownRequestError,
-} from '.'
+import { DataLoader } from './DataLoader'
 import type { CustomDataProxyFetch } from './core/engines/common/Engine'
 import type { QueryEngineResultData } from './core/engines/common/types/QueryEngine'
 import { throwValidationException } from './core/errorRendering/throwValidationException'
 import { hasBatchIndex } from './core/errors/ErrorWithBatchIndex'
-import { createApplyBatchExtensionsFunction } from './core/extensions/applyQueryExtensions'
 import type { MergedExtensionsList } from './core/extensions/MergedExtensionsList'
+import { createApplyBatchExtensionsFunction } from './core/extensions/applyQueryExtensions'
 import { deserializeJsonResponse } from './core/jsonProtocol/deserializeJsonResponse'
 import { getBatchId } from './core/jsonProtocol/getBatchId'
 import { isWrite } from './core/jsonProtocol/isWrite'
 import type { GlobalOmitOptions } from './core/jsonProtocol/serializeJsonQuery'
 import type { PrismaPromiseInteractiveTransaction, PrismaPromiseTransaction } from './core/request/PrismaPromise'
 import type { Action, JsArgs } from './core/types/exported/JsApi'
-import { DataLoader } from './DataLoader'
 import type { Client, Unpacker } from './getPrismaClient'
 import type { CallSite } from './utils/CallSite'
 import { createErrorMessageWithContext } from './utils/createErrorMessageWithContext'
 import { deepGet } from './utils/deep-set'
-import { deserializeRawResult, type RawResponse } from './utils/deserializeRawResults'
+import { type RawResponse, deserializeRawResult } from './utils/deserializeRawResults'
 
 const debug = Debug('prisma:client:request_handler')
 

@@ -1,9 +1,9 @@
 'use strict'
 
+import Url from 'node:url'
 import Debug from '@prisma/debug'
 import { HttpProxyAgent } from 'http-proxy-agent'
 import { HttpsProxyAgent } from 'https-proxy-agent'
-import Url from 'node:url'
 
 const debug = Debug('prisma:fetch-engine:getProxyAgent')
 

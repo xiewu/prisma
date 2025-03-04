@@ -20,7 +20,8 @@ import { computeEngineSideOmissions, computeEngineSideSelection } from '../exten
 import { isFieldRef } from '../model/FieldRef'
 import { isParam } from '../model/Param'
 import type { RuntimeDataModel, RuntimeModel } from '../runtimeDataModel'
-import { isSkip, type Skip } from '../types'
+import { type Skip, isSkip } from '../types'
+import type { ValidationError } from '../types/ValidationError'
 import type {
   Action,
   JsArgs,
@@ -31,7 +32,6 @@ import type {
   Selection,
 } from '../types/exported/JsApi'
 import { ObjectEnumValue, objectEnumValues } from '../types/exported/ObjectEnums'
-import type { ValidationError } from '../types/ValidationError'
 
 const jsActionToProtocolAction: Record<Action, JsonQueryAction> = {
   findUnique: 'findUnique',

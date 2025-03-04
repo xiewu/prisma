@@ -1,12 +1,12 @@
+import path from 'node:path'
 import { afterAll, beforeAll, test } from '@jest/globals'
 import fs from 'fs-extra'
-import path from 'node:path'
 
 import type { Client } from '../../../src/runtime/getPrismaClient'
 import { checkMissingProviders } from './checkMissingProviders'
 import {
-  getTestSuiteClientMeta,
   getTestSuiteCliMeta,
+  getTestSuiteClientMeta,
   getTestSuiteConfigs,
   getTestSuiteFolderPath,
   getTestSuiteMeta,
@@ -20,7 +20,7 @@ import {
   setupTestSuiteDbURI,
 } from './setupTestSuiteEnv'
 import { stopMiniProxyQueryEngine } from './stopMiniProxyQueryEngine'
-import type { ClientMeta, CliMeta, MatrixOptions } from './types'
+import type { CliMeta, ClientMeta, MatrixOptions } from './types'
 
 export type TestSuiteMeta = ReturnType<typeof getTestSuiteMeta>
 export type TestCallbackSuiteMeta = TestSuiteMeta & { generatedFolder: string }

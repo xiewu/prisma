@@ -1,6 +1,6 @@
 import fs from 'node:fs/promises'
-import globby from 'globby'
 import path from 'node:path'
+import globby from 'globby'
 
 import { pathToPosix } from './path'
 

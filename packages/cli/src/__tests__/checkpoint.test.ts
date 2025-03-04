@@ -1,6 +1,6 @@
 import { jestContext } from '@prisma/get-platform'
 
-import { redactCommandArray, SENSITIVE_CLI_OPTIONS, tryToReadDataFromSchema } from '../utils/checkpoint'
+import { SENSITIVE_CLI_OPTIONS, redactCommandArray, tryToReadDataFromSchema } from '../utils/checkpoint'
 
 const ctx = jestContext.new().assemble()
 

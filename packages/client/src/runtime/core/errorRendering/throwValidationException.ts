@@ -3,10 +3,10 @@ import type { CallSite } from '../../utils/CallSite'
 import { createErrorMessageWithContext } from '../../utils/createErrorMessageWithContext'
 import { PrismaClientValidationError } from '../errors/PrismaClientValidationError'
 import type { GlobalOmitOptions } from '../jsonProtocol/serializeJsonQuery'
-import type { JsArgs } from '../types/exported/JsApi'
 import type { ValidationError } from '../types/ValidationError'
-import { applyValidationError } from './applyValidationError'
+import type { JsArgs } from '../types/exported/JsApi'
 import { buildArgumentsRenderingTree, renderArgsTree } from './ArgumentsRenderingTree'
+import { applyValidationError } from './applyValidationError'
 
 type ExceptionParams = {
   errors: ValidationError[]

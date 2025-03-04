@@ -1,13 +1,13 @@
 import type { Sql } from 'sql-template-tag'
 
 import type { RequiredExtensionArgs as UserArgs } from './ExtensionArgs'
-import type { ITXClientDenyList } from './itxClientDenyList'
 import type { InputJsonObject, JsonObject } from './Json'
 import type { OperationPayload } from './Payload'
 import type { PrismaPromise } from './Public'
 import type { FluentOperation, GetFindResult, GetResult as GetOperationResult, Operation } from './Result'
 import type { TypedSql } from './TypedSql'
 import type { Call, ComputeDeep, Exact, Fn, Optional, Path, Return, Select, UnwrapTuple } from './Utils'
+import type { ITXClientDenyList } from './itxClientDenyList'
 
 export type InternalArgs<
   R = { [K in string]: { [K in string]: unknown } },

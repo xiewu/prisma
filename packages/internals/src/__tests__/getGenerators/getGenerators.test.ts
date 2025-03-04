@@ -1,7 +1,7 @@
+import path from 'node:path'
 import { getCliQueryEngineBinaryType } from '@prisma/engines'
 import { BinaryType } from '@prisma/fetch-engine'
 import { getBinaryTargetForCurrentPlatform, jestConsoleContext, jestContext } from '@prisma/get-platform'
-import path from 'node:path'
 import stripAnsi from 'strip-ansi'
 
 import { getGenerators } from '../../get-generators/getGenerators'

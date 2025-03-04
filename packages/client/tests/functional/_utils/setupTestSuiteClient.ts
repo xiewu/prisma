@@ -1,9 +1,9 @@
+import { readFile } from 'node:fs/promises'
+import path from 'node:path'
 import type { D1Database } from '@cloudflare/workers-types'
 import type { SqlQueryOutput } from '@prisma/generator-helper'
 import { getConfig, getDMMF, parseEnvValue } from '@prisma/internals'
-import { readFile } from 'node:fs/promises'
-import path from 'node:path'
-import { fetch, WebSocket } from 'undici'
+import { WebSocket, fetch } from 'undici'
 
 import { introspectSql } from '../../../../cli/src/generate/introspectSql'
 import { generateClient } from '../../../src/generation/generateClient'
@@ -24,7 +24,7 @@ import {
   setupTestSuiteSchema,
 } from './setupTestSuiteEnv'
 import type { TestSuiteMeta } from './setupTestSuiteMatrix'
-import type { AlterStatementCallback, ClientMeta, ClientRuntime, CliMeta } from './types'
+import type { AlterStatementCallback, CliMeta, ClientMeta, ClientRuntime } from './types'
 
 const runtimeBase = path.join(__dirname, '..', '..', '..', 'runtime')
 

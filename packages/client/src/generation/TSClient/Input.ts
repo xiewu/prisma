@@ -1,14 +1,14 @@
 import indent from 'indent-string'
 
 import { uniqueBy } from '../../runtime/utils/uniqueBy'
-import type { DMMF } from '../dmmf-types'
 import type { GenericArgsInfo } from '../GenericsArgsInfo'
+import type { DMMF } from '../dmmf-types'
 import * as ts from '../ts-builders'
 import { appendSkipType } from '../utils'
 import { GraphQLScalarToJSTypeTable, JSOutputTypeToInputType } from '../utils/common'
-import { TAB_SIZE } from './constants'
 import type { Generable } from './Generable'
 import type { GenerateContext } from './GenerateContext'
+import { TAB_SIZE } from './constants'
 
 export class InputField implements Generable {
   constructor(

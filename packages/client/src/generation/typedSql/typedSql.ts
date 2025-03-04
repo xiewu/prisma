@@ -1,7 +1,7 @@
 import type { DMMF, SqlQueryOutput } from '@prisma/generator-helper'
 
 import type { FileMap } from '../generateClient'
-import { buildDbEnums, DbEnumsList } from './buildDbEnums'
+import { DbEnumsList, buildDbEnums } from './buildDbEnums'
 import { buildIndexCjs, buildIndexEsm, buildIndexTs } from './buildIndex'
 import { buildTypedQueryCjs, buildTypedQueryEsm, buildTypedQueryTs } from './buildTypedQuery'
 

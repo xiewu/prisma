@@ -4,10 +4,10 @@ import type { O } from 'ts-toolbelt'
 import type { Client, InternalRequestParams } from '../../getPrismaClient'
 import { getCallSite } from '../../utils/CallSite'
 import {
+  type CompositeProxyLayer,
   addObjectProperties,
   addProperty,
   cacheProperties,
-  type CompositeProxyLayer,
   createCompositeProxy,
 } from '../compositeProxy'
 import type { PrismaPromise } from '../request/PrismaPromise'

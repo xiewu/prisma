@@ -4,9 +4,9 @@ import process from 'node:process'
 
 import { Debug } from '@prisma/driver-adapter-utils'
 
+import { parseDefaultExport } from './PrismaConfig'
 import { defaultConfig } from './defaultConfig'
 import type { PrismaConfigInternal } from './defineConfig'
-import { parseDefaultExport } from './PrismaConfig'
 
 const debug = Debug('prisma:config:loadConfigFromFile')
 

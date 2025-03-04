@@ -1,5 +1,5 @@
 import type { PrismaConfigInternal } from '@prisma/config'
-import { arg, type Command, getCLIPathHash, getProjectHash, HelpError, isError } from '@prisma/internals'
+import { type Command, HelpError, arg, getCLIPathHash, getProjectHash, isError } from '@prisma/internals'
 import * as checkpoint from 'checkpoint-client'
 
 /**

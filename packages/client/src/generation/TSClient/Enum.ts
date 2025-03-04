@@ -3,8 +3,8 @@ import indent from 'indent-string'
 import { objectEnumNames } from '../../runtime/core/types/exported/ObjectEnums'
 import { strictEnumNames } from '../../runtime/strictEnum'
 import type { DMMF } from '../dmmf-types'
-import { TAB_SIZE } from './constants'
 import type { Generable } from './Generable'
+import { TAB_SIZE } from './constants'
 
 export class Enum implements Generable {
   constructor(

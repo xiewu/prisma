@@ -1,7 +1,7 @@
-import type { ErrorBasicBuilder, ErrorWriter } from './base'
 import type { Field } from './Field'
 import { FormattedString } from './FormattedString'
 import type { Value } from './Value'
+import type { ErrorBasicBuilder, ErrorWriter } from './base'
 
 const separator = ': '
 export class ObjectField implements ErrorBasicBuilder, Field {

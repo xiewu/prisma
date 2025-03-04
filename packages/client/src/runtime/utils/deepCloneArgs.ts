@@ -3,7 +3,7 @@ import Decimal from 'decimal.js'
 import { Sql } from 'sql-template-tag'
 
 import { isFieldRef } from '../core/model/FieldRef'
-import { isTypedSql, TypedSql, type UnknownTypedSql } from '../core/types/exported'
+import { TypedSql, type UnknownTypedSql, isTypedSql } from '../core/types/exported'
 import type { JsArgs, JsInputValue } from '../core/types/exported/JsApi'
 import { ObjectEnumValue } from '../core/types/exported/ObjectEnums'
 import type { RawQueryArgs } from '../core/types/exported/RawQueryArgs'

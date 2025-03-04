@@ -1,4 +1,4 @@
-import { makePrismaConfigInternal, type PrismaConfigInternal } from './PrismaConfig'
+import { type PrismaConfigInternal, makePrismaConfigInternal } from './PrismaConfig'
 
 /**
  * This default config can be used as basis for unit and integration tests.

@@ -1,10 +1,10 @@
 import { finished } from 'node:stream/promises'
 
-import { arg } from '@prisma/internals'
 import { createReadStream, existsSync } from 'node:fs'
 import fs from 'node:fs/promises'
-import glob from 'globby'
 import path from 'node:path'
+import { arg } from '@prisma/internals'
+import glob from 'globby'
 import { $, type ProcessOutput, sleep } from 'zx'
 
 const monorepoRoot = path.resolve(__dirname, '..', '..', '..', '..', '..')

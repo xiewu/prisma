@@ -1,8 +1,8 @@
+import path from 'node:path'
 import { SchemaEngine } from '@prisma/migrate'
 import slugify from '@sindresorhus/slugify'
 import fs from 'fs-jetpack'
 import type { FSJetpack } from 'fs-jetpack/types'
-import path from 'node:path'
 import hash from 'string-hash'
 import VError, { MultiError } from 'verror'
 

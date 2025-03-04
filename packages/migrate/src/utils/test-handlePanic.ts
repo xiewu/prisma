@@ -1,5 +1,5 @@
-import { ErrorArea, handlePanic, RustPanic } from '@prisma/internals'
 import path from 'node:path'
+import { ErrorArea, RustPanic, handlePanic } from '@prisma/internals'
 
 async function main() {
   const error = new RustPanic(

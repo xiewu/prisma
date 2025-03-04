@@ -1,5 +1,5 @@
-import type { DMMF } from '../../dmmf-types'
 import { TSClient } from '../../TSClient/TSClient'
+import type { DMMF } from '../../dmmf-types'
 
 /**
  * @internal

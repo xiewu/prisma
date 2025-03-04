@@ -3,10 +3,10 @@ import { $ as colors } from 'kleur/colors'
 
 import { Writer } from '../../../generation/ts-builders/Writer'
 import type { GlobalOmitOptions } from '../jsonProtocol/serializeJsonQuery'
-import type { JsArgs } from '../types/exported/JsApi'
 import type { ValidationError } from '../types/ValidationError'
-import { applyValidationError } from './applyValidationError'
+import type { JsArgs } from '../types/exported/JsApi'
 import { type ArgumentsRenderingTree, buildArgumentsRenderingTree } from './ArgumentsRenderingTree'
+import { applyValidationError } from './applyValidationError'
 import { activeColors, inactiveColors } from './base'
 
 expect.addSnapshotSerializer(ansiEscapesSerializer)

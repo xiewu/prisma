@@ -1,5 +1,5 @@
-import { defineConfig } from 'src/index'
 import fs from 'node:fs/promises'
+import { defineConfig } from 'src/index'
 
 // Notice the usage of a top-level `await` here, which is only possible in ESM.
 const env = await fs.readFile('.env', 'utf-8')

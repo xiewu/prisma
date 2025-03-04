@@ -1,8 +1,8 @@
 // describeIf is making eslint unhappy about the test names
 
+import path from 'node:path'
 import { defaultTestConfig } from '@prisma/config'
 import { jestConsoleContext, jestContext } from '@prisma/get-platform'
-import path from 'node:path'
 
 import { DbPull } from '../../commands/DbPull'
 import { setupCockroach, tearDownCockroach } from '../../utils/setupCockroach'

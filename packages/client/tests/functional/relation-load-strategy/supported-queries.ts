@@ -5,13 +5,13 @@ import { Providers } from '../_utils/providers'
 import { waitFor } from '../_utils/tests/waitFor'
 import type { NewPrismaClient } from '../_utils/types'
 import {
+  type RelationLoadStrategy,
   providersNotSupportingRelationJoins,
   providersSupportingRelationJoins,
-  type RelationLoadStrategy,
 } from './_common'
 import testMatrix from './_matrix'
 // @ts-ignore
-import type { Prisma as PrismaNamespace, PrismaClient } from './node_modules/@prisma/client'
+import type { PrismaClient, Prisma as PrismaNamespace } from './node_modules/@prisma/client'
 
 let prisma: PrismaClient<PrismaNamespace.PrismaClientOptions, 'query'>
 declare let newPrismaClient: NewPrismaClient<typeof PrismaClient>

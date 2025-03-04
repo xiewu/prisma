@@ -2,8 +2,8 @@ import type { DMMF } from '../dmmf-types'
 import * as ts from '../ts-builders'
 import { extArgsParam, getIncludeName, getModelArgName, getOmitName, getSelectName } from '../utils'
 import type { GenerateContext } from './GenerateContext'
-import { getArgFieldJSDoc } from './helpers'
 import { buildInputField } from './Input'
+import { getArgFieldJSDoc } from './helpers'
 
 export class ArgsTypeBuilder {
   private moduleExport: ts.Export<ts.TypeDeclaration<ts.ObjectType>>

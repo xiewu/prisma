@@ -1,7 +1,7 @@
-import superjson from 'superjson'
-import { PrismaClient } from '.prisma/client'
 import { setImmediate, setTimeout } from 'node:timers/promises'
 import type { DriverAdapter } from '@prisma/driver-adapter-utils'
+import superjson from 'superjson'
+import { PrismaClient } from '.prisma/client'
 
 export async function smokeTest(adapter: DriverAdapter) {
   // wait for the database pool to be initialized

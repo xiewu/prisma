@@ -6,10 +6,10 @@ import { isDecimalJsLike } from '../../utils/decimalJsLike'
 import { isFieldRef } from '../model/FieldRef'
 import { ObjectEnumValue } from '../types/exported/ObjectEnums'
 import { ArrayValue } from './ArrayValue'
-import { activeColors, type Colors, type ErrorBasicBuilder, type ErrorWriter, inactiveColors } from './base'
 import { ObjectField } from './ObjectField'
 import { ObjectValue } from './ObjectValue'
 import { ScalarValue } from './ScalarValue'
+import { type Colors, type ErrorBasicBuilder, type ErrorWriter, activeColors, inactiveColors } from './base'
 
 type MessageRender = (colors: Colors) => string
 

@@ -1,6 +1,6 @@
+import path from 'node:path'
 import { defaultTestConfig } from '@prisma/config'
 import { jestConsoleContext, jestContext } from '@prisma/get-platform'
-import path from 'node:path'
 import stripAnsi from 'strip-ansi'
 
 import { DebugInfo } from '../../DebugInfo'

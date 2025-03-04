@@ -1,4 +1,4 @@
-import { link, type PlatformInfo } from '@prisma/get-platform'
+import { type PlatformInfo, link } from '@prisma/get-platform'
 import { dim } from 'kleur/colors'
 import { match } from 'ts-pattern'
 

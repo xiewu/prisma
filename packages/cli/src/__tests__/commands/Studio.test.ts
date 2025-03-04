@@ -1,9 +1,9 @@
-import { defaultTestConfig, type PrismaConfigInternal } from '@prisma/config'
+import fs from 'node:fs'
+import path from 'node:path'
+import { type PrismaConfigInternal, defaultTestConfig } from '@prisma/config'
 import { jestConsoleContext, jestContext } from '@prisma/get-platform'
 import * as miniProxy from '@prisma/mini-proxy'
-import fs from 'node:fs'
 import fetch from 'node-fetch'
-import path from 'node:path'
 import rimraf from 'rimraf'
 
 import { DbPush } from '../../../../migrate/src/commands/DbPush'

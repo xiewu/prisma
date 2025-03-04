@@ -1,13 +1,13 @@
 import {
   type Attributes,
   type Context,
-  context as _context,
   type Span,
   SpanKind,
   type SpanOptions,
-  trace,
   type Tracer,
   type TracerProvider,
+  context as _context,
+  trace,
 } from '@opentelemetry/api'
 import type { EngineSpan, EngineSpanKind, ExtendedSpanOptions, SpanCallback, TracingHelper } from '@prisma/internals'
 

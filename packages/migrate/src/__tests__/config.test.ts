@@ -1,6 +1,6 @@
+import path from 'node:path'
 import { jestConsoleContext, jestContext } from '@prisma/get-platform'
 import execa from 'execa'
-import path from 'node:path'
 
 const ctx = jestContext.new().add(jestConsoleContext()).assemble()
 

@@ -1,10 +1,10 @@
+import fs from 'node:fs'
+import path from 'node:path'
+import readline from 'node:readline'
 import Debug from '@prisma/debug'
 import { isCi, isInContainer, isInNpmLifecycleHook, isInteractive, maybeInGitHook } from '@prisma/internals'
 import * as checkpoint from 'checkpoint-client'
 import paths from 'env-paths'
-import fs from 'node:fs'
-import path from 'node:path'
-import readline from 'node:readline'
 
 import { type EventCapture, PosthogEventCapture } from './capture'
 import { type NpsStatusLookup, ProdNpsStatusLookup, type Timeframe } from './status'

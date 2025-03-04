@@ -1,12 +1,12 @@
+import fs from 'node:fs/promises'
+import path from 'node:path'
 import { isValidJsIdentifier } from '@prisma/internals'
 import {
-  introspectSql as migrateIntrospectSql,
   type IntrospectSqlError,
   type IntrospectSqlInput,
+  introspectSql as migrateIntrospectSql,
 } from '@prisma/migrate'
-import fs from 'node:fs/promises'
 import { bold } from 'kleur/colors'
-import path from 'node:path'
 
 const SQL_DIR = 'sql'
 

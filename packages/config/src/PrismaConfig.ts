@@ -1,5 +1,5 @@
 import { Debug, type DriverAdapter } from '@prisma/driver-adapter-utils'
-import { Either, identity, Schema as Shape } from 'effect'
+import { Either, Schema as Shape, identity } from 'effect'
 import { pipe } from 'effect/Function'
 
 import { defineConfig } from './defineConfig'

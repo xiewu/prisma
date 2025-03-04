@@ -1,6 +1,6 @@
-import { checkbox, input } from '@inquirer/prompts'
 import fs from 'node:fs/promises'
 import path from 'node:path'
+import { checkbox, input } from '@inquirer/prompts'
 import { $ } from 'zx'
 
 import { Providers } from '../../tests/functional/_utils/providers'

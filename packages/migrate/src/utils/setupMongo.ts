@@ -1,5 +1,5 @@
-import mongo from 'mongoose'
 import path from 'node:path'
+import mongo from 'mongoose'
 
 export type SetupParams = {
   connectionString: string

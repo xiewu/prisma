@@ -1,6 +1,6 @@
-import type * as esbuild from 'esbuild'
 import fs from 'node:fs'
 import { builtinModules } from 'node:module'
+import type * as esbuild from 'esbuild'
 
 type Replacement = [RegExp, string | ((regex: RegExp, contents: string) => string | Promise<string>)]
 

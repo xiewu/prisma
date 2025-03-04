@@ -1,14 +1,14 @@
-import type { Context } from '@opentelemetry/api'
-import Debug, { clearLogs } from '@prisma/debug'
-import { bindAdapter, type DriverAdapter, type ErrorCapturingDriverAdapter } from '@prisma/driver-adapter-utils'
-import { version as enginesVersion } from '@prisma/engines-version/package.json'
-import type { ActiveConnectorType, EnvValue, GeneratorConfig } from '@prisma/generator-helper'
-import type { LoadedEnv } from '@prisma/internals'
-import { type ExtendedSpanOptions, logger, type TracingHelper, tryLoadEnvs } from '@prisma/internals'
 import { AsyncResource } from 'node:async_hooks'
 import { EventEmitter } from 'node:events'
 import fs from 'node:fs'
 import path from 'node:path'
+import type { Context } from '@opentelemetry/api'
+import Debug, { clearLogs } from '@prisma/debug'
+import { type DriverAdapter, type ErrorCapturingDriverAdapter, bindAdapter } from '@prisma/driver-adapter-utils'
+import { version as enginesVersion } from '@prisma/engines-version/package.json'
+import type { ActiveConnectorType, EnvValue, GeneratorConfig } from '@prisma/generator-helper'
+import type { LoadedEnv } from '@prisma/internals'
+import { type ExtendedSpanOptions, type TracingHelper, logger, tryLoadEnvs } from '@prisma/internals'
 import { type RawValue, Sql } from 'sql-template-tag'
 
 import {
@@ -17,6 +17,9 @@ import {
   PrismaClientUnknownRequestError,
   PrismaClientValidationError,
 } from '.'
+import type { QueryMiddleware, QueryMiddlewareParams } from './MiddlewareHandler'
+import { MiddlewareHandler } from './MiddlewareHandler'
+import { RequestHandler } from './RequestHandler'
 import { addProperty, createCompositeProxy, removeProperties } from './core/compositeProxy'
 import type { BatchTransactionOptions, Engine, EngineConfig, Options } from './core/engines'
 import type { AccelerateEngineConfig } from './core/engines/accelerate/AccelerateEngine'
@@ -31,9 +34,9 @@ import { getBatchRequestPayload } from './core/engines/common/utils/getBatchRequ
 import { prettyPrintArguments } from './core/errorRendering/prettyPrintArguments'
 import { prismaGraphQLToJSError } from './core/errors/utils/prismaGraphQLToJSError'
 import { $extends } from './core/extensions/$extends'
+import { MergedExtensionsList } from './core/extensions/MergedExtensionsList'
 import { applyAllResultExtensions } from './core/extensions/applyAllResultExtensions'
 import { applyQueryExtensions } from './core/extensions/applyQueryExtensions'
-import { MergedExtensionsList } from './core/extensions/MergedExtensionsList'
 import { checkPlatformCaching } from './core/init/checkPlatformCaching'
 import { getDatasourceOverrides } from './core/init/getDatasourceOverrides'
 import { getEngineInstance } from './core/init/getEngineInstance'
@@ -52,24 +55,21 @@ import {
   sqlMiddlewareArgsMapper,
   templateStringMiddlewareArgsMapper,
 } from './core/raw-query/rawQueryArgsMapper'
-import { createPrismaPromiseFactory } from './core/request/createPrismaPromise'
 import type {
   PrismaPromise,
   PrismaPromiseInteractiveTransaction,
   PrismaPromiseTransaction,
 } from './core/request/PrismaPromise'
 import type { UserArgs } from './core/request/UserArgs'
+import { createPrismaPromiseFactory } from './core/request/createPrismaPromise'
 import type { RuntimeDataModel } from './core/runtimeDataModel'
 import { getTracingHelper } from './core/tracing/TracingHelper'
 import { getLockCountPromise } from './core/transaction/utils/createLockCountPromise'
-import { itxClientDenyList } from './core/types/exported/itxClientDenyList'
 import type { JsInputValue } from './core/types/exported/JsApi'
 import type { RawQueryArgs } from './core/types/exported/RawQueryArgs'
 import type { UnknownTypedSql } from './core/types/exported/TypedSql'
+import { itxClientDenyList } from './core/types/exported/itxClientDenyList'
 import { getLogLevel } from './getLogLevel'
-import type { QueryMiddleware, QueryMiddlewareParams } from './MiddlewareHandler'
-import { MiddlewareHandler } from './MiddlewareHandler'
-import { RequestHandler } from './RequestHandler'
 import { type CallSite, getCallSite } from './utils/CallSite'
 import { clientVersion } from './utils/clientVersion'
 import { validatePrismaClientOptions } from './utils/validatePrismaClientOptions'

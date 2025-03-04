@@ -23,14 +23,14 @@ import type {
   MutuallyExclusiveFieldsError,
   ValidationError,
 } from '../types/ValidationError'
-import { applyUnionError } from './applyUnionError'
 import type { ArgumentsRenderingTree } from './ArgumentsRenderingTree'
-import type { Colors } from './base'
 import type { ObjectField } from './ObjectField'
 import { ObjectFieldSuggestion } from './ObjectFieldSuggestion'
 import { ObjectValue } from './ObjectValue'
 import { ScalarValue } from './ScalarValue'
 import { SuggestionObjectValue } from './SuggestionObjectValue'
+import { applyUnionError } from './applyUnionError'
+import type { Colors } from './base'
 
 /**
  * Given the validation error and arguments rendering tree, applies corresponding

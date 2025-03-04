@@ -1,13 +1,14 @@
+import path from 'node:path'
 import type { PrismaConfigInternal } from '@prisma/config'
 import Debug from '@prisma/debug'
 import { enginesVersion } from '@prisma/engines'
 import {
-  arg,
   type Command,
+  HelpError,
+  arg,
   format,
   getConfig,
   getDirectUrl,
-  HelpError,
   isError,
   loadEnvFile,
   mergeSchemas,
@@ -18,7 +19,6 @@ import { StudioServer } from '@prisma/studio-server'
 import getPort from 'get-port'
 import { bold, dim, red } from 'kleur/colors'
 import open from 'open'
-import path from 'node:path'
 
 // Note that we have a test relying on the namespace
 // Any change to the namespace must be done in the test as well

@@ -15,7 +15,7 @@ import { Debug, DriverAdapterError } from '@prisma/driver-adapter-utils'
 import * as pg from '@prisma/pg-worker'
 
 import { name as packageName } from '../package.json'
-import { customParsers, fieldToColumnType, fixArrayBufferValues, UnsupportedNativeDataType } from './conversion'
+import { UnsupportedNativeDataType, customParsers, fieldToColumnType, fixArrayBufferValues } from './conversion'
 
 const types = pg.types
 const debug = Debug('prisma:driver-adapter:pg')

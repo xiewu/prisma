@@ -1,7 +1,7 @@
-import { getPlatformInfo } from '@prisma/get-platform'
-import { ClientEngineType, handleLibraryLoadingErrors } from '@prisma/internals'
 import os from 'node:os'
 import path from 'node:path'
+import { getPlatformInfo } from '@prisma/get-platform'
+import { ClientEngineType, handleLibraryLoadingErrors } from '@prisma/internals'
 
 import { PrismaClientInitializationError } from '../../errors/PrismaClientInitializationError'
 import type { EngineConfig } from '../common/Engine'

@@ -1,6 +1,6 @@
 import crypto from 'node:crypto'
 
-import { getSchemaWithPath, type SchemaPathFromConfig } from './getSchema'
+import { type SchemaPathFromConfig, getSchemaWithPath } from './getSchema'
 
 /**
  * Get a unique identifier for the project by hashing

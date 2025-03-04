@@ -1,9 +1,9 @@
-import { getClientEngineType, getPackedPackage } from '@prisma/internals'
 import fs from 'fs'
 import path from 'path'
+import { promisify } from 'util'
+import { getClientEngineType, getPackedPackage } from '@prisma/internals'
 import rimraf from 'rimraf'
 import tsd, { formatter } from 'tsd'
-import { promisify } from 'util'
 
 import { compileFile } from '../../utils/compileFile'
 import { generateInFolder } from '../../utils/generateInFolder'

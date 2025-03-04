@@ -4,8 +4,8 @@ import { Writer } from '../../../generation/ts-builders/Writer'
 import { FieldRefImpl } from '../model/FieldRef'
 import { objectEnumValues } from '../types/exported/ObjectEnums'
 import { type ArgumentsRenderingTree, buildArgumentsRenderingTree } from './ArgumentsRenderingTree'
-import { inactiveColors } from './base'
 import type { ObjectValue } from './ObjectValue'
+import { inactiveColors } from './base'
 
 function printTree(tree: ArgumentsRenderingTree) {
   const writer = new Writer(0, { colors: inactiveColors })

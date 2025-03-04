@@ -1,9 +1,9 @@
-import { serialize } from '@prisma/get-platform/src/test-utils/jestSnapshotSerializer'
 import fs from 'node:fs'
 import path from 'node:path'
+import { serialize } from '@prisma/get-platform/src/test-utils/jestSnapshotSerializer'
 import stripAnsi from 'strip-ansi'
 
-import { getDMMF, isRustPanic, type MultipleSchemas } from '../..'
+import { type MultipleSchemas, getDMMF, isRustPanic } from '../..'
 import { fixturesPath } from '../__utils__/fixtures'
 
 jest.setTimeout(10_000)

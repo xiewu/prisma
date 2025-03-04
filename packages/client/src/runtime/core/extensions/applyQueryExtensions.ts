@@ -1,5 +1,5 @@
-import type { Client, InternalRequestParams } from '../../getPrismaClient'
 import type { RequestParams } from '../../RequestHandler'
+import type { Client, InternalRequestParams } from '../../getPrismaClient'
 import { deepCloneArgs } from '../../utils/deepCloneArgs'
 import type { CustomDataProxyFetch } from '../engines'
 import type { QueryOptionsCb } from '../types/exported/ExtensionArgs'

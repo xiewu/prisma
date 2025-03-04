@@ -1,13 +1,13 @@
 // describeIf is making eslint unhappy about the test names
 
+import path from 'node:path'
 import { defaultTestConfig } from '@prisma/config'
 import { jestConsoleContext, jestContext } from '@prisma/get-platform'
 import { getSchema, pathToPosix, toSchemasContainer } from '@prisma/internals'
-import path from 'node:path'
 
-import { DbPull } from '../../commands/DbPull'
 import { SchemaEngine } from '../../SchemaEngine'
-import { runQueryPostgres, type SetupParams, setupPostgres, tearDownPostgres } from '../../utils/setupPostgres'
+import { DbPull } from '../../commands/DbPull'
+import { type SetupParams, runQueryPostgres, setupPostgres, tearDownPostgres } from '../../utils/setupPostgres'
 import CaptureStdout from '../__helpers__/captureStdout'
 
 const isMacOrWindowsCI = Boolean(process.env.CI) && ['darwin', 'win32'].includes(process.platform)

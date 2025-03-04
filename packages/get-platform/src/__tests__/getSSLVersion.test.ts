@@ -1,5 +1,5 @@
-import { computeLibSSLSpecificPaths, getArchFromUname, getSSLVersion } from '../../src/getPlatform'
 import { jestContext } from '..'
+import { computeLibSSLSpecificPaths, getArchFromUname, getSSLVersion } from '../../src/getPlatform'
 
 const describeIf = (condition: boolean) => (condition ? describe : describe.skip)
 

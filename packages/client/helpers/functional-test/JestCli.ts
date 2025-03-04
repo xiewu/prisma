@@ -1,5 +1,5 @@
-import execa from 'execa'
 import path from 'node:path'
+import execa from 'execa'
 
 const packageRoot = path.resolve(__dirname, '..', '..')
 

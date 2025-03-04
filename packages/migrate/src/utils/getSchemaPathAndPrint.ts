@@ -1,11 +1,11 @@
+import path from 'node:path'
 import {
   type GetSchemaOptions,
   type GetSchemaResult,
-  getSchemaWithPath,
   type SchemaPathFromConfig,
+  getSchemaWithPath,
 } from '@prisma/internals'
 import { dim } from 'kleur/colors'
-import path from 'node:path'
 
 // TODO move NoSchemaFoundError to `@prisma/internals` and this too
 // then replace the 2 hardcoded errors to NoSchemaFoundError in

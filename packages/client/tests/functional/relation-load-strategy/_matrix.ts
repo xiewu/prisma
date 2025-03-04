@@ -1,5 +1,5 @@
 import { defineMatrix } from '../_utils/defineMatrix'
-import { providersSupportingRelationJoins, type RelationLoadStrategy } from './_common'
+import { type RelationLoadStrategy, providersSupportingRelationJoins } from './_common'
 
 export default defineMatrix(() => [
   providersSupportingRelationJoins.map((provider) => ({ provider })),

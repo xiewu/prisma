@@ -1,12 +1,12 @@
 import type { PrismaConfigInternal } from '@prisma/config'
 import {
+  type Command,
+  HelpError,
   arg,
   canPrompt,
   checkUnsupportedDataProxy,
-  type Command,
   dropDatabase,
   format,
-  HelpError,
   isError,
   link,
   loadEnvFile,

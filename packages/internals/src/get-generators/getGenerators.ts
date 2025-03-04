@@ -1,3 +1,4 @@
+import path from 'node:path'
 import Debug from '@prisma/debug'
 import { enginesVersion, getCliQueryEngineBinaryType } from '@prisma/engines'
 import type { DownloadOptions } from '@prisma/fetch-engine'
@@ -13,13 +14,12 @@ import type { BinaryTarget } from '@prisma/get-platform'
 import { binaryTargets, getBinaryTargetForCurrentPlatform } from '@prisma/get-platform'
 import { bold, gray, green, red, underline, yellow } from 'kleur/colors'
 import pMap from 'p-map'
-import path from 'node:path'
 
 import {
+  type GetSchemaResult,
   getConfig,
   getDMMF,
   getEnvPaths,
-  type GetSchemaResult,
   getSchemaWithPath,
   mergeSchemas,
   vercelPkgPathRegex,

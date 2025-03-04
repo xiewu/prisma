@@ -2,7 +2,7 @@ import Debug from '@prisma/debug'
 import type { ErrorRecord } from '@prisma/driver-adapter-utils'
 import type { BinaryTarget } from '@prisma/get-platform'
 import { assertNodeAPISupported, binaryTargets, getBinaryTargetForCurrentPlatform } from '@prisma/get-platform'
-import { assertAlways, type EngineTrace, type TracingHelper } from '@prisma/internals'
+import { type EngineTrace, type TracingHelper, assertAlways } from '@prisma/internals'
 import { bold, green, red } from 'kleur/colors'
 
 import { PrismaClientInitializationError } from '../../errors/PrismaClientInitializationError'
@@ -35,8 +35,8 @@ import { getErrorMessageWithLink as genericGetErrorMessageWithLink } from '../co
 import { getInteractiveTransactionId } from '../common/utils/getInteractiveTransactionId'
 import { defaultLibraryLoader } from './DefaultLibraryLoader'
 import { reactNativeLibraryLoader } from './ReactNativeLibraryLoader'
-import type { Library, LibraryLoader, QueryEngineConstructor, QueryEngineInstance } from './types/Library'
 import { wasmLibraryLoader } from './WasmLibraryLoader'
+import type { Library, LibraryLoader, QueryEngineConstructor, QueryEngineInstance } from './types/Library'
 
 const DRIVER_ADAPTER_EXTERNAL_ERROR = 'P2036'
 const debug = Debug('prisma:client:libraryEngine')

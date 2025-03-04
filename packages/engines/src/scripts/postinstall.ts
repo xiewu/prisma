@@ -1,9 +1,9 @@
+import fs from 'node:fs'
+import path from 'node:path'
 import Debug from '@prisma/debug'
 import { enginesVersion } from '@prisma/engines-version'
 import { type BinaryDownloadConfiguration, BinaryType, download } from '@prisma/fetch-engine'
 import type { BinaryTarget } from '@prisma/get-platform'
-import fs from 'node:fs'
-import path from 'node:path'
 
 import { getCliQueryEngineBinaryType } from '..'
 

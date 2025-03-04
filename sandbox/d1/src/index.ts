@@ -8,8 +8,8 @@
  * Learn more at https://developers.cloudflare.com/workers/
  */
 
-import { PrismaClient } from 'db'
 import { PrismaD1 } from '@prisma/adapter-d1'
+import { PrismaClient } from 'db'
 
 export interface Env {
   MY_DATABASE: D1Database

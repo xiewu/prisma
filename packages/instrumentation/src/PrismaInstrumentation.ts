@@ -1,4 +1,4 @@
-import { trace, type TracerProvider } from '@opentelemetry/api'
+import { type TracerProvider, trace } from '@opentelemetry/api'
 import {
   InstrumentationBase,
   type InstrumentationConfig,

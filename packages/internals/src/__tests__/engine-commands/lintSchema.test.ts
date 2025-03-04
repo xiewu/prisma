@@ -1,7 +1,7 @@
 import { jestConsoleContext, jestContext } from '@prisma/get-platform'
 
 import { lintSchema } from '../../engine-commands'
-import { getLintWarnings, type LintError, type LintWarning } from '../../engine-commands/lintSchema'
+import { type LintError, type LintWarning, getLintWarnings } from '../../engine-commands/lintSchema'
 import type { MultipleSchemas } from '../../utils/schemaFileInput'
 
 const ctx = jestContext.new().add(jestConsoleContext()).assemble()

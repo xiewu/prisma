@@ -16,8 +16,8 @@ import type {
 import { Debug, DriverAdapterError } from '@prisma/driver-adapter-utils'
 
 import { name as packageName } from '../package.json'
-import { cast, fieldToColumnType, type PlanetScaleColumnType } from './conversion'
-import { createDeferred, type Deferred } from './deferred'
+import { type PlanetScaleColumnType, cast, fieldToColumnType } from './conversion'
+import { type Deferred, createDeferred } from './deferred'
 
 const debug = Debug('prisma:driver-adapter:planetscale')
 

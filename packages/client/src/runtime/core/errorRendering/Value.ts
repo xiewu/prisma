@@ -1,5 +1,5 @@
-import type { ErrorBasicBuilder, ErrorWriter } from './base'
 import type { ObjectValue } from './ObjectValue'
+import type { ErrorBasicBuilder, ErrorWriter } from './base'
 
 export abstract class Value implements ErrorBasicBuilder {
   abstract write(writer: ErrorWriter): void

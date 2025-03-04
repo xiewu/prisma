@@ -1,7 +1,7 @@
-import { pipe } from 'fp-ts/lib/function'
+import fs from 'node:fs/promises'
 import type * as T from 'fp-ts/lib/Task'
 import * as TE from 'fp-ts/lib/TaskEither'
-import fs from 'node:fs/promises'
+import { pipe } from 'fp-ts/lib/function'
 
 import * as fsUtils from './fs-utils'
 

@@ -1,6 +1,6 @@
-import type * as esbuild from 'esbuild'
 import { builtinModules } from 'node:module'
 import path from 'node:path'
+import type * as esbuild from 'esbuild'
 
 // packages that aren't detected but used
 // TODO: these could be scoped at the root

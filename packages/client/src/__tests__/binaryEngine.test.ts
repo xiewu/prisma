@@ -1,6 +1,6 @@
-import { ClientEngineType, getClientEngineType } from '@prisma/internals'
 import { EventEmitter } from 'node:events'
 import path from 'node:path'
+import { ClientEngineType, getClientEngineType } from '@prisma/internals'
 
 import { BinaryEngine } from '../runtime/core/engines'
 import { disabledTracingHelper } from '../runtime/core/tracing/TracingHelper'

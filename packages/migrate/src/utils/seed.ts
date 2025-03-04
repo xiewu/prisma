@@ -1,9 +1,9 @@
+import fs from 'node:fs'
+import path from 'node:path'
 import Debug from '@prisma/debug'
 import { getPrismaConfigFromPackageJson, link, logger } from '@prisma/internals'
 import execa from 'execa'
-import fs from 'node:fs'
 import { bold, green, italic, red, yellow } from 'kleur/colors'
-import path from 'node:path'
 import pkgUp from 'pkg-up'
 
 const debug = Debug('prisma:migrate:seed')

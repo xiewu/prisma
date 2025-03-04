@@ -6,15 +6,15 @@ import { pipe } from 'fp-ts/lib/function'
 import { bold, red } from 'kleur/colors'
 import { match } from 'ts-pattern'
 
-import { ErrorArea, getWasmError, isWasmPanic, RustPanic, type WasmPanic } from '../panic'
+import { ErrorArea, RustPanic, type WasmPanic, getWasmError, isWasmPanic } from '../panic'
 import { type SchemaFileInput, toMultipleSchemas } from '../utils/schemaFileInput'
 import { prismaSchemaWasm } from '../wasm'
 import { addVersionDetailsToErrorMessage } from './errorHelpers'
 import {
+  type QueryEngineErrorInit,
   createDebugErrorType,
   createSchemaValidationError,
   parseQueryEngineError,
-  type QueryEngineErrorInit,
 } from './queryEngineCommons'
 import { relativizePathInPSLError } from './relativizePathInPSLError'
 

@@ -4,10 +4,10 @@ import type { DMMF } from '../dmmf-types'
 import * as ts from '../ts-builders'
 import { capitalize, getFieldArgName, getSelectName } from '../utils'
 import { ArgsTypeBuilder } from './Args'
-import { TAB_SIZE } from './constants'
 import type { Generable } from './Generable'
 import type { GenerateContext } from './GenerateContext'
 import { buildOutputType } from './Output'
+import { TAB_SIZE } from './constants'
 
 export class Count implements Generable {
   constructor(

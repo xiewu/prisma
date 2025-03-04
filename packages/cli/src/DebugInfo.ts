@@ -1,10 +1,10 @@
 import type { PrismaConfigInternal } from '@prisma/config'
 import type { Command } from '@prisma/internals'
 import {
+  HelpError,
   arg,
   format,
   getSchemaWithPath,
-  HelpError,
   isCi,
   isError,
   isInteractive,

@@ -1,10 +1,10 @@
+import fs from 'node:fs'
+import os from 'node:os'
+import path from 'node:path'
 import Debug from '@prisma/debug'
 import { type BinaryTarget, getNodeAPIName } from '@prisma/get-platform'
 import findCacheDir from 'find-cache-dir'
-import fs from 'node:fs'
 import { ensureDir } from 'fs-extra'
-import os from 'node:os'
-import path from 'node:path'
 
 import { BinaryType } from './BinaryType'
 

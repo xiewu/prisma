@@ -1,5 +1,5 @@
 /* eslint-disable import/no-duplicates */
-import { neon, neonConfig, Pool as NeonPool } from '@neondatabase/serverless'
+import { Pool as NeonPool, neon, neonConfig } from '@neondatabase/serverless'
 import { PrismaNeon, PrismaNeonHTTP } from '@prisma/adapter-neon'
 import { PrismaPg } from '@prisma/adapter-pg'
 import { PrismaPg as PrismaPgWorker } from '@prisma/adapter-pg-worker'

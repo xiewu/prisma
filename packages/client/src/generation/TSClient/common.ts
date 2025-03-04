@@ -1,7 +1,7 @@
 import indent from 'indent-string'
 
-import { TAB_SIZE } from './constants'
 import type { TSClientOptions } from './TSClient'
+import { TAB_SIZE } from './constants'
 
 export const commonCodeJS = ({
   runtimeBase,

@@ -1,11 +1,11 @@
 import { INDENT_SIZE } from '../../../generation/ts-builders/Writer'
 import { ArrayValue } from './ArrayValue'
-import { type ErrorWriter, fieldsSeparator } from './base'
 import type { Field } from './Field'
 import { FormattedString } from './FormattedString'
 import type { ObjectField } from './ObjectField'
 import type { ObjectFieldSuggestion } from './ObjectFieldSuggestion'
 import { Value } from './Value'
+import { type ErrorWriter, fieldsSeparator } from './base'
 
 type SelectionParent = {
   kind: 'include' | 'select'

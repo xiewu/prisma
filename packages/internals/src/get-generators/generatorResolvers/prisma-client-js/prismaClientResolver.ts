@@ -1,7 +1,7 @@
-import Debug from '@prisma/debug'
 import fs from 'node:fs'
-import { bold, dim, green, yellow } from 'kleur/colors'
 import path from 'node:path'
+import Debug from '@prisma/debug'
+import { bold, dim, green, yellow } from 'kleur/colors'
 
 import { longestCommonPathPrefix } from '../../../utils/path'
 import { findPrismaClientDir } from './auto-installation/findPrismaClientDir'

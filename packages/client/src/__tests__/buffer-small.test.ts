@@ -2,8 +2,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-loss-of-precision */
 
-import assert from 'node:assert'
 import { Buffer as NodeBuffer } from 'buffer'
+import assert from 'node:assert'
 
 import { Buffer } from '../../../../helpers/compile/plugins/fill-plugin/fillers/buffer-small'
 

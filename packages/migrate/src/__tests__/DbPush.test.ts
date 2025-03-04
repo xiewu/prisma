@@ -1,13 +1,13 @@
 // describeIf is making eslint unhappy about the test names
 
+import path from 'node:path'
 import { defaultTestConfig } from '@prisma/config'
 import { jestConsoleContext, jestContext } from '@prisma/get-platform'
-import path from 'node:path'
 import prompt from 'prompts'
 
 import { DbPush } from '../commands/DbPush'
 import { CaptureStdout } from '../utils/captureStdout'
-import { setupMongo, type SetupParams, tearDownMongo } from '../utils/setupMongo'
+import { type SetupParams, setupMongo, tearDownMongo } from '../utils/setupMongo'
 import { setupPostgres, tearDownPostgres } from '../utils/setupPostgres'
 
 process.env.PRISMA_MIGRATE_SKIP_GENERATE = '1'

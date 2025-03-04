@@ -1,6 +1,6 @@
-import { loadConfigFromFile, type PrismaConfigInternal } from '@prisma/config'
+import { type PrismaConfigInternal, loadConfigFromFile } from '@prisma/config'
 import { Debug } from '@prisma/debug'
-import { assertNever, HelpError } from '@prisma/internals'
+import { HelpError, assertNever } from '@prisma/internals'
 
 const debug = Debug('prisma:cli:loadConfig')
 

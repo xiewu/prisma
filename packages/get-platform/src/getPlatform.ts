@@ -1,9 +1,9 @@
-import Debug from '@prisma/debug'
 import cp from 'node:child_process'
 import fs from 'node:fs/promises'
 import os from 'node:os'
-import { match } from 'ts-pattern'
 import { promisify } from 'node:util'
+import Debug from '@prisma/debug'
+import { match } from 'ts-pattern'
 
 import type { BinaryTarget } from './binaryTargets'
 import { warn } from './logger'

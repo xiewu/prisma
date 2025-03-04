@@ -1,6 +1,6 @@
 import type { ArgType, SqlQuery } from '@prisma/driver-adapter-utils'
 
-import { isPrismaValuePlaceholder, type PrismaValue, type QueryPlanDbQuery } from '../QueryPlan'
+import { type PrismaValue, type QueryPlanDbQuery, isPrismaValuePlaceholder } from '../QueryPlan'
 import { renderQueryTemplate } from './renderQueryTemplate'
 import type { ScopeBindings } from './scope'
 

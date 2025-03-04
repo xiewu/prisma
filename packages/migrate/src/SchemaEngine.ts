@@ -1,22 +1,22 @@
 import path from 'node:path'
 
+import type { ChildProcess } from 'node:child_process'
+import { spawn } from 'node:child_process'
 import Debug from '@prisma/debug'
 import {
   BinaryType,
   ErrorArea,
-  getConfig,
-  getMigrateConfigDir,
-  getSchema,
   type MigrateTypes,
-  relativizePathInPSLError,
-  resolveBinary,
   RustPanic,
   SchemaEngineExitCode,
   type SchemaEngineLogLine,
+  getConfig,
+  getMigrateConfigDir,
+  getSchema,
+  relativizePathInPSLError,
+  resolveBinary,
   setClassName,
 } from '@prisma/internals'
-import type { ChildProcess } from 'node:child_process'
-import { spawn } from 'node:child_process'
 import { bold, red } from 'kleur/colors'
 
 import type { EngineArgs, EngineResults, RPCPayload, RpcSuccessResponse } from './types'

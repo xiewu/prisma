@@ -1,7 +1,7 @@
+import type { PrismaConfig, PrismaConfigInternal } from '../PrismaConfig'
 import { defaultConfig } from '../defaultConfig'
 import { defaultTestConfig } from '../defaultTestConfig'
 import { defineConfig } from '../defineConfig'
-import type { PrismaConfig, PrismaConfigInternal } from '../PrismaConfig'
 
 describe('defineConfig', () => {
   const baselineConfig = {

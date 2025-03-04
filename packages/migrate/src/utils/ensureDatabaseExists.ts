@@ -1,12 +1,12 @@
 import type { ConfigMetaFormat, DatabaseCredentials } from '@prisma/internals'
 import {
+  PRISMA_POSTGRES_PROVIDER,
   canConnectToDatabase,
   createDatabase,
   getConfig,
   getEffectiveUrl,
   getMigrateConfigDir,
   getSchema,
-  PRISMA_POSTGRES_PROVIDER,
   uriToCredentials,
 } from '@prisma/internals'
 import { bold } from 'kleur/colors'

@@ -1,7 +1,7 @@
+import path from 'node:path'
 import arg from 'arg'
 import execa from 'execa'
 import { bold, dim, red, underline } from 'kleur/colors'
-import path from 'node:path'
 
 const argv = arg({})
 const usage = `

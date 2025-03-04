@@ -1,5 +1,5 @@
 // @ts-ignore
-import type { Prisma as PrismaNamespace, PrismaClient } from '@prisma/client'
+import type { PrismaClient, Prisma as PrismaNamespace } from '@prisma/client'
 
 import testMatrix from './_matrix'
 

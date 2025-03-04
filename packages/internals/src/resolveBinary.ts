@@ -1,10 +1,10 @@
+import fs from 'node:fs'
+import path from 'node:path'
 import { getEnginesPath } from '@prisma/engines'
 import { BinaryType, engineEnvVarMap, getBinaryEnvVarPath } from '@prisma/fetch-engine'
 import { getBinaryTargetForCurrentPlatform, getNodeAPIName } from '@prisma/get-platform'
 import * as TE from 'fp-ts/TaskEither'
-import fs from 'node:fs'
 import { ensureDir } from 'fs-extra'
-import path from 'node:path'
 import tempDir from 'temp-dir'
 
 import { chmodPlusX } from './utils/chmodPlusX'

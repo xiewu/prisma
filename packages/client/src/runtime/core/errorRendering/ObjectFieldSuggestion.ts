@@ -1,5 +1,5 @@
-import type { ErrorBasicBuilder, ErrorWriter } from './base'
 import type { SuggestionObjectValue } from './SuggestionObjectValue'
+import type { ErrorBasicBuilder, ErrorWriter } from './base'
 
 export class ObjectFieldSuggestion implements ErrorBasicBuilder {
   public isRequired = false

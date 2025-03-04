@@ -4,7 +4,7 @@ import { jestContext } from '@prisma/get-platform'
 import type { ParseError } from 'effect/ParseResult'
 
 import { defaultConfig } from '../defaultConfig'
-import { loadConfigFromFile, type LoadConfigFromFileError } from '../loadConfigFromFile'
+import { type LoadConfigFromFileError, loadConfigFromFile } from '../loadConfigFromFile'
 
 const ctx = jestContext.new().assemble()
 

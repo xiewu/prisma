@@ -1,6 +1,6 @@
-import { getDMMF } from '@prisma/internals'
 import fs from 'node:fs'
 import path from 'node:path'
+import { getDMMF } from '@prisma/internals'
 import sortKeys from 'sort-keys'
 
 const blog = `datasource db {

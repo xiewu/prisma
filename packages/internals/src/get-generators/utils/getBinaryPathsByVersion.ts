@@ -1,10 +1,10 @@
+import path from 'node:path'
 import { enginesVersion } from '@prisma/engines'
 import type { BinaryDownloadConfiguration, DownloadOptions } from '@prisma/fetch-engine'
 import { download } from '@prisma/fetch-engine'
 import type { BinaryPaths, BinaryTargetsEnvValue } from '@prisma/generator-helper'
 import type { BinaryTarget } from '@prisma/get-platform'
 import { ensureDir } from 'fs-extra'
-import path from 'node:path'
 
 import { mapKeys } from '../../utils/mapKeys'
 import { parseAWSNodejsRuntimeEnvVarVersion } from '../../utils/parseAWSNodejsRuntimeEnvVarVersion'

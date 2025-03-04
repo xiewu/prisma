@@ -1,6 +1,6 @@
 import fs from 'node:fs'
-import packlist from 'npm-packlist'
 import path from 'node:path'
+import packlist from 'npm-packlist'
 import { readPackageUpSync } from 'read-package-up'
 import tempy from 'tempy'
 

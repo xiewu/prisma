@@ -1,7 +1,7 @@
+import path from 'node:path'
 import { Extractor, ExtractorConfig } from '@microsoft/api-extractor'
 import type * as esbuild from 'esbuild'
 import fs from 'fs-extra'
-import path from 'node:path'
 
 import { run } from '../run'
 

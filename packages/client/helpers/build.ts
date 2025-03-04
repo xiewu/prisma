@@ -1,6 +1,6 @@
-import { ClientEngineType } from '@prisma/internals'
 import fs from 'node:fs'
 import path from 'node:path'
+import { ClientEngineType } from '@prisma/internals'
 
 import type { BuildOptions } from '../../../helpers/compile/build'
 import { build } from '../../../helpers/compile/build'

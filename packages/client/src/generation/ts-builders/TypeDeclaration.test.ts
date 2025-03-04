@@ -1,8 +1,8 @@
 import { docComment } from './DocComment'
 import { genericParameter } from './GenericParameter'
 import { namedType } from './NamedType'
-import { stringify } from './stringify'
 import { typeDeclaration } from './TypeDeclaration'
+import { stringify } from './stringify'
 
 const A = namedType('A')
 

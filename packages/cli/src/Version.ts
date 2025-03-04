@@ -1,10 +1,12 @@
+import os from 'node:os'
 import type { PrismaConfigInternal } from '@prisma/config'
 import { enginesVersion, getCliQueryEngineBinaryType } from '@prisma/engines'
 import { getBinaryTargetForCurrentPlatform } from '@prisma/get-platform'
 import type { Command } from '@prisma/internals'
 import {
-  arg,
   BinaryType,
+  HelpError,
+  arg,
   format,
   formatTable,
   getConfig,
@@ -12,14 +14,12 @@ import {
   getSchema,
   getSchemaWithPath,
   getTypescriptVersion,
-  HelpError,
   isError,
   loadEnvFile,
   wasm,
 } from '@prisma/internals'
 import { bold, dim, red } from 'kleur/colors'
-import os from 'node:os'
-import { match, P } from 'ts-pattern'
+import { P, match } from 'ts-pattern'
 
 import { getInstalledPrismaClientVersion } from './utils/getClientVersion'
 

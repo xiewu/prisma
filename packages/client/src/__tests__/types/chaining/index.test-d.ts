@@ -1,5 +1,5 @@
-import { PrismaClient, User } from '.'
 import { expectError } from 'tsd'
+import { PrismaClient, User } from '.'
 
 const prisma = new PrismaClient()
 ;(async () => {

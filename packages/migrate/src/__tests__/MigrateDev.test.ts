@@ -1,10 +1,10 @@
 // describeIf is making eslint unhappy about the test names
 /* eslint-disable jest/no-identical-title */
 
+import path from 'node:path'
 import { defaultTestConfig } from '@prisma/config'
 import { jestConsoleContext, jestContext } from '@prisma/get-platform'
 import fs from 'fs-jetpack'
-import path from 'node:path'
 import prompt from 'prompts'
 
 import { DbExecute } from '../commands/DbExecute'

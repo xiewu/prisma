@@ -2,8 +2,8 @@ import { array } from './ArrayType'
 import { functionType } from './FunctionType'
 import { namedType } from './NamedType'
 import { objectType } from './ObjectType'
-import { stringify } from './stringify'
 import { unionType } from './UnionType'
+import { stringify } from './stringify'
 
 const A = namedType('A')
 const B = namedType('B')

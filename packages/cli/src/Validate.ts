@@ -2,13 +2,13 @@ import path from 'node:path'
 
 import type { PrismaConfigInternal } from '@prisma/config'
 import {
-  arg,
   type Command,
+  HelpError,
+  arg,
   format,
   getConfig,
   getLintWarningsAsText,
   handleLintPanic,
-  HelpError,
   lintSchema,
   loadEnvFile,
   logger,

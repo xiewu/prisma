@@ -1,10 +1,10 @@
+import { rm } from 'node:fs/promises'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
 import * as ni from '@antfu/ni'
 import { defaultTestConfig } from '@prisma/config'
 import * as execa from 'execa'
-import { rm } from 'node:fs/promises'
 import { copy } from 'fs-extra'
-import { tmpdir } from 'node:os'
-import { join } from 'node:path'
 
 import { SubCommand } from '../../SubCommand'
 

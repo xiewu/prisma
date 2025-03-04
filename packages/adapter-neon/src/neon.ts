@@ -15,7 +15,7 @@ import type {
 import { Debug, DriverAdapterError } from '@prisma/driver-adapter-utils'
 
 import { name as packageName } from '../package.json'
-import { customParsers, fieldToColumnType, fixArrayBufferValues, UnsupportedNativeDataType } from './conversion'
+import { UnsupportedNativeDataType, customParsers, fieldToColumnType, fixArrayBufferValues } from './conversion'
 
 const debug = Debug('prisma:driver-adapter:neon')
 

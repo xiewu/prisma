@@ -1,13 +1,13 @@
-import { ClientEngineType } from '@prisma/internals'
 import fs from 'node:fs/promises'
 import path from 'node:path'
+import { ClientEngineType } from '@prisma/internals'
 
 import { matrix } from '../../../../../helpers/blaze/matrix'
 import { merge } from '../../../../../helpers/blaze/merge'
 import type { MatrixTestHelper } from './defineMatrix'
-import { type AdapterProviders, isDriverAdapterProviderLabel, Providers, type RelationModes } from './providers'
+import { type AdapterProviders, Providers, type RelationModes, isDriverAdapterProviderLabel } from './providers'
 import type { TestSuiteMeta } from './setupTestSuiteMatrix'
-import type { ClientMeta, ClientRuntime, CliMeta } from './types'
+import type { CliMeta, ClientMeta, ClientRuntime } from './types'
 
 export type TestSuiteMatrix = { [K in string]: any }[][]
 export type NamedTestSuiteConfig = {

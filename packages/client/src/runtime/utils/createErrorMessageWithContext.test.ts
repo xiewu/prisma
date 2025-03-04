@@ -1,5 +1,5 @@
-import { fs, vol } from 'memfs'
 import { performance } from 'node:perf_hooks'
+import { fs, vol } from 'memfs'
 
 import type { CallSite } from './CallSite'
 import { createErrorMessageWithContext } from './createErrorMessageWithContext'

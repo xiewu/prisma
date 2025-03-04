@@ -1,5 +1,5 @@
-import { Pool } from 'pg'
 import { PrismaPg } from '@prisma/adapter-pg'
+import { Pool } from 'pg'
 import { smokeTest } from './test'
 
 async function main() {

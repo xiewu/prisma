@@ -1,8 +1,9 @@
 #!/usr/bin/env tsx
 
+import path from 'node:path'
 import Debug from '@prisma/debug'
 import { enginesVersion } from '@prisma/engines'
-import { arg, handlePanic, HelpError, isCurrentBinInstalledGlobally, isError, isRustPanic } from '@prisma/internals'
+import { HelpError, arg, handlePanic, isCurrentBinInstalledGlobally, isError, isRustPanic } from '@prisma/internals'
 import {
   DbCommand,
   DbExecute,
@@ -10,7 +11,6 @@ import {
   DbPush,
   // DbDrop,
   DbSeed,
-  getDatabaseVersionSafe,
   MigrateCommand,
   MigrateDeploy,
   MigrateDev,
@@ -18,16 +18,15 @@ import {
   MigrateReset,
   MigrateResolve,
   MigrateStatus,
+  getDatabaseVersionSafe,
 } from '@prisma/migrate'
 import { bold, red } from 'kleur/colors'
-import path from 'node:path'
 
 import { CLI } from './CLI'
 import { DebugInfo } from './DebugInfo'
 import { Format } from './Format'
 import { Generate } from './Generate'
 import { Init } from './Init'
-import { Platform } from './platform/_Platform'
 /*
   When running bin.ts with ts-node with DEBUG="*"
   This error shows and blocks the execution
@@ -39,12 +38,13 @@ import { Platform } from './platform/_Platform'
 import { Studio } from './Studio'
 import { SubCommand } from './SubCommand'
 import { Telemetry } from './Telemetry'
+import { Validate } from './Validate'
+import { Version } from './Version'
+import { Platform } from './platform/_Platform'
 import { redactCommandArray, runCheckpointClientCheck } from './utils/checkpoint'
 import { detectPrisma1 } from './utils/detectPrisma1'
 import { loadConfig } from './utils/loadConfig'
 import { printUpdateMessage } from './utils/printUpdateMessage'
-import { Validate } from './Validate'
-import { Version } from './Version'
 
 const debug = Debug('prisma:cli:bin')
 

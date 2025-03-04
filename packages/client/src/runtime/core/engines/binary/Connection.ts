@@ -1,6 +1,6 @@
+import type { URL } from 'node:url'
 import getStream from 'get-stream'
 import type { Dispatcher, Pool } from 'undici'
-import type { URL } from 'node:url'
 
 export type Result<R> = {
   statusCode: Dispatcher.ResponseData['statusCode']

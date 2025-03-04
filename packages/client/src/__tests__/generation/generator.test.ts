@@ -1,9 +1,9 @@
-import { ClientEngineType, getClientEngineType, getGenerator, getPackedPackage, parseEnvValue } from '@prisma/internals'
 import fs from 'node:fs'
 import path from 'node:path'
+import { promisify } from 'node:util'
+import { ClientEngineType, getClientEngineType, getGenerator, getPackedPackage, parseEnvValue } from '@prisma/internals'
 import rimraf from 'rimraf'
 import stripAnsi from 'strip-ansi'
-import { promisify } from 'node:util'
 
 import { omit } from '../../omit'
 

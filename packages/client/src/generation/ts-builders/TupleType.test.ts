@@ -1,6 +1,6 @@
 import { namedType } from './NamedType'
-import { stringify } from './stringify'
 import { tupleItem, tupleType } from './TupleType'
+import { stringify } from './stringify'
 
 test('empty', () => {
   const tuple = tupleType()

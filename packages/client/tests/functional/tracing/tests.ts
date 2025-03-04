@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker'
-import { type Attributes, context, SpanKind, trace } from '@opentelemetry/api'
+import { type Attributes, SpanKind, context, trace } from '@opentelemetry/api'
 import { AsyncHooksContextManager } from '@opentelemetry/context-async-hooks'
 import { registerInstrumentations } from '@opentelemetry/instrumentation'
 import { Resource } from '@opentelemetry/resources'

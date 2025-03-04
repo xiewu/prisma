@@ -33,15 +33,15 @@ import {
 } from '../utils'
 import { InputField } from './../TSClient'
 import { ArgsTypeBuilder } from './Args'
-import { TAB_SIZE } from './constants'
 import type { Generable } from './Generable'
 import type { GenerateContext } from './GenerateContext'
-import { getArgFieldJSDoc, getMethodJSDoc, getMethodJSDocBody, wrapComment } from './helpers'
 import { InputType } from './Input'
 import { ModelFieldRefs } from './ModelFieldRefs'
 import { buildOutputType } from './Output'
 import { buildModelPayload } from './Payload'
 import { buildIncludeType, buildOmitType, buildScalarSelectType, buildSelectType } from './SelectIncludeOmit'
+import { TAB_SIZE } from './constants'
+import { getArgFieldJSDoc, getMethodJSDoc, getMethodJSDocBody, wrapComment } from './helpers'
 import { getModelActions } from './utils/getModelActions'
 
 export class Model implements Generable {

@@ -1,6 +1,6 @@
-import { getConfig, getDMMF, parseEnvValue } from '@prisma/internals'
 import fs from 'node:fs/promises'
 import path from 'node:path'
+import { getConfig, getDMMF, parseEnvValue } from '@prisma/internals'
 
 import { generateClient } from '../../../src/generation/generateClient'
 import type { MemoryTestDir } from './MemoryTestDir'

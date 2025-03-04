@@ -1,9 +1,9 @@
-import Debug from '@prisma/debug'
 import fs from 'node:fs'
-import pMap from 'p-map'
 import path from 'node:path'
-import rimraf from 'rimraf'
 import { promisify } from 'node:util'
+import Debug from '@prisma/debug'
+import pMap from 'p-map'
+import rimraf from 'rimraf'
 
 import { getRootCacheDir } from './utils'
 

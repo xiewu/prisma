@@ -1,9 +1,9 @@
 import { hasOwnProperty } from '@prisma/internals'
 
 import {
+  type CompositeProxyLayer,
   addProperty,
   cacheProperties,
-  type CompositeProxyLayer,
   createCompositeProxy,
   removeProperties,
 } from '../compositeProxy'

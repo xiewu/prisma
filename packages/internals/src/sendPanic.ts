@@ -1,19 +1,19 @@
+import fs from 'node:fs'
+import os from 'node:os'
+import path from 'node:path'
 import { getBinaryTargetForCurrentPlatform } from '@prisma/get-platform'
 import archiver from 'archiver'
 import * as checkpoint from 'checkpoint-client'
-import fs from 'node:fs'
 import globby from 'globby'
-import os from 'node:os'
-import path from 'node:path'
 import stripAnsi from 'strip-ansi'
 import tmp from 'tmp'
-import { match, P } from 'ts-pattern'
+import { P, match } from 'ts-pattern'
 
 import { getSchema } from './cli/getSchema'
 import {
-  createErrorReport,
   type CreateErrorReportInput,
   ErrorKind,
+  createErrorReport,
   makeErrorReportCompleted,
   uploadZip,
 } from './errorReporting'

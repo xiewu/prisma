@@ -1,5 +1,5 @@
-import { ClientEngineType, getClientEngineType } from '@prisma/internals'
 import path from 'node:path'
+import { ClientEngineType, getClientEngineType } from '@prisma/internals'
 
 import { getTestClient } from '../../../../utils/getTestClient'
 import { tearDownPostgres } from '../../../../utils/setupPostgres'

@@ -8,7 +8,7 @@ import {
 } from '@prisma/client-engine-runtime'
 import Debug from '@prisma/debug'
 import type { ErrorCapturingDriverAdapter } from '@prisma/driver-adapter-utils'
-import { assertNever, type TracingHelper } from '@prisma/internals'
+import { type TracingHelper, assertNever } from '@prisma/internals'
 
 import { PrismaClientInitializationError } from '../../errors/PrismaClientInitializationError'
 import { PrismaClientKnownRequestError } from '../../errors/PrismaClientKnownRequestError'
@@ -16,7 +16,7 @@ import { PrismaClientRustPanicError } from '../../errors/PrismaClientRustPanicEr
 import { PrismaClientUnknownRequestError } from '../../errors/PrismaClientUnknownRequestError'
 import type { BatchQueryEngineResult, EngineConfig, RequestBatchOptions, RequestOptions } from '../common/Engine'
 import type { Engine } from '../common/Engine'
-import type { LogEmitter, QueryEvent as ClientQueryEvent } from '../common/types/Events'
+import type { QueryEvent as ClientQueryEvent, LogEmitter } from '../common/types/Events'
 import type { JsonQuery } from '../common/types/JsonProtocol'
 import type {
   EngineMetricsOptions,
@@ -33,8 +33,8 @@ import type {
 import type * as Tx from '../common/types/Transaction'
 import type { InteractiveTransactionInfo } from '../common/types/Transaction'
 import { getErrorMessageWithLink as genericGetErrorMessageWithLink } from '../common/utils/getErrorMessageWithLink'
-import type { QueryCompiler, QueryCompilerConstructor, QueryCompilerLoader } from './types/QueryCompiler'
 import { wasmQueryCompilerLoader } from './WasmQueryCompilerLoader'
+import type { QueryCompiler, QueryCompilerConstructor, QueryCompilerLoader } from './types/QueryCompiler'
 
 const CLIENT_ENGINE_ERROR = 'P2038'
 

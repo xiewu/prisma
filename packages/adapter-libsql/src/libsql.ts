@@ -1,10 +1,10 @@
 import {
+  type InStatement,
   type Client as LibSqlClientRaw,
   type Config as LibSqlConfig,
-  createClient,
-  type InStatement,
   type ResultSet as LibSqlResultSet,
   type Transaction as LibSqlTransactionRaw,
+  createClient,
 } from '@libsql/client'
 import type {
   SqlConnection,

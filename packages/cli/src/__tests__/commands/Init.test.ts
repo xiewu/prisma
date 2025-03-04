@@ -1,6 +1,6 @@
-import { jestConsoleContext, jestContext } from '@prisma/get-platform'
 import fs from 'node:fs'
 import { join } from 'node:path'
+import { jestConsoleContext, jestContext } from '@prisma/get-platform'
 import stripAnsi from 'strip-ansi'
 
 import { defaultEnv, defaultGitIgnore, defaultSchema } from '../../Init'

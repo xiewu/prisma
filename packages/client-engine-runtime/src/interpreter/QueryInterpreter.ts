@@ -1,7 +1,7 @@
 import type { ErrorCapturingSqlQueryable, SqlQuery } from '@prisma/driver-adapter-utils'
 
-import type { QueryEvent } from '../events'
 import type { JoinExpression, QueryPlanNode } from '../QueryPlan'
+import type { QueryEvent } from '../events'
 import { renderQuery } from './renderQuery'
 import type { PrismaObject, ScopeBindings, Value } from './scope'
 import { serialize } from './serialize'

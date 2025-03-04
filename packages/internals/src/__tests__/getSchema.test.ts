@@ -1,7 +1,7 @@
 import path from 'node:path'
 import stripAnsi from 'strip-ansi'
 
-import { getSchemaWithPath, type SchemaPathFromConfig } from '../cli/getSchema'
+import { type SchemaPathFromConfig, getSchemaWithPath } from '../cli/getSchema'
 import { fixturesPath } from './__utils__/fixtures'
 
 if (process.env.CI) {

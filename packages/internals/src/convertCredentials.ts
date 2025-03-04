@@ -1,6 +1,6 @@
-import type { ConnectorType } from '@prisma/generator-helper'
 import path from 'node:path'
 import * as NodeURL from 'node:url'
+import type { ConnectorType } from '@prisma/generator-helper'
 
 import type { DatabaseCredentials } from './types'
 import { PRISMA_POSTGRES_PROTOCOL } from './utils/prismaPostgres'

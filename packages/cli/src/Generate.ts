@@ -1,37 +1,37 @@
+import fs from 'node:fs'
+import path from 'node:path'
 import type { PrismaConfigInternal } from '@prisma/config'
 import { enginesVersion } from '@prisma/engines'
 import type { SqlQueryOutput } from '@prisma/generator-helper'
 import {
-  arg,
   type Command,
-  format,
   type Generator,
+  type GetSchemaResult,
+  HelpError,
+  type SchemaPathFromConfig,
+  arg,
+  format,
   getCommandWithExecutor,
   getConfig,
-  getGenerators,
   getGeneratorSuccessMessage,
-  type GetSchemaResult,
+  getGenerators,
   getSchemaWithPath,
   getSchemaWithPathOptional,
-  HelpError,
   isError,
   link,
   loadEnvFile,
   logger,
   missingGeneratorMessage,
   parseEnvValue,
-  type SchemaPathFromConfig,
 } from '@prisma/internals'
 import { printSchemaLoadedMessage } from '@prisma/migrate'
-import fs from 'node:fs'
 import { blue, bold, dim, green, red, yellow } from 'kleur/colors'
 import logUpdate from 'log-update'
-import path from 'node:path'
 import resolvePkg from 'resolve-pkg'
 
+import { Watcher } from './generate/Watcher'
 import { getHardcodedUrlWarning } from './generate/getHardcodedUrlWarning'
 import { introspectSql, sqlDirPath } from './generate/introspectSql'
-import { Watcher } from './generate/Watcher'
 import { breakingChangesMessage } from './utils/breakingChanges'
 import { getRandomPromotion, renderPromotion } from './utils/handlePromotions'
 import { handleNpsSurvey } from './utils/nps/survey'

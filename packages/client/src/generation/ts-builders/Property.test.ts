@@ -1,8 +1,8 @@
 import { docComment } from './DocComment'
 import { namedType } from './NamedType'
 import { property } from './Property'
-import { stringify } from './stringify'
 import { toStringTag } from './WellKnownSymbol'
+import { stringify } from './stringify'
 
 const A = namedType('A')
 

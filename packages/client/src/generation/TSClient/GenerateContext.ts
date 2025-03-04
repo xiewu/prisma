@@ -1,7 +1,7 @@
 import type { GeneratorConfig } from '@prisma/generator-helper'
 
-import type { DMMFHelper } from '../dmmf'
 import type { GenericArgsInfo } from '../GenericsArgsInfo'
+import type { DMMFHelper } from '../dmmf'
 
 export interface GenerateContextOptions {
   dmmf: DMMFHelper

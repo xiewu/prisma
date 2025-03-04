@@ -1,5 +1,5 @@
-import type * as esbuild from 'esbuild'
 import path from 'node:path'
+import type * as esbuild from 'esbuild'
 
 type TsConfig = {
   compilerOptions?: {

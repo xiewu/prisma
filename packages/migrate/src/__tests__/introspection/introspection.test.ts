@@ -1,6 +1,6 @@
-import { toSchemasContainer } from '@prisma/internals'
 import fs from 'node:fs'
 import path from 'node:path'
+import { toSchemasContainer } from '@prisma/internals'
 
 import { SchemaEngine } from '../../SchemaEngine'
 

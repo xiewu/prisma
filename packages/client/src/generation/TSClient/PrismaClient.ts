@@ -1,4 +1,4 @@
-import type { DataSource, DMMF } from '@prisma/generator-helper'
+import type { DMMF, DataSource } from '@prisma/generator-helper'
 import { assertNever } from '@prisma/internals'
 import indent from 'indent-string'
 
@@ -17,12 +17,12 @@ import {
 } from '../utils'
 import { lowerCase } from '../utils/common'
 import { runtimeImport, runtimeImportedType } from '../utils/runtimeImport'
-import { TAB_SIZE } from './constants'
 import { Datasources } from './Datasources'
 import type { Generable } from './Generable'
 import type { GenerateContext } from './GenerateContext'
-import { globalOmitConfig } from './globalOmit'
 import type { TSClientOptions } from './TSClient'
+import { TAB_SIZE } from './constants'
+import { globalOmitConfig } from './globalOmit'
 import { getModelActions } from './utils/getModelActions'
 
 function clientTypeMapModelsDefinition(context: GenerateContext) {

@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-redundant-type-constituents */
 import { randomBytes } from 'node:crypto'
-import { expectTypeOf } from 'expect-type'
 import https from 'node:https'
+import { expectTypeOf } from 'expect-type'
 
 import testMatrix from './_matrix'
 // @ts-ignore
-import type { Prisma as PrismaNamespace, PrismaClient } from './node_modules/@prisma/client'
+import type { PrismaClient, Prisma as PrismaNamespace } from './node_modules/@prisma/client'
 
 declare let prisma: PrismaClient
 declare let Prisma: typeof PrismaNamespace

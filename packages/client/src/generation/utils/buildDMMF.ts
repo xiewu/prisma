@@ -1,13 +1,13 @@
 import type { DMMF } from '@prisma/generator-helper'
 
 import {
-  dmmfToRuntimeDataModel,
   type PrunedRuntimeDataModel,
-  pruneRuntimeDataModel,
   type RuntimeDataModel,
+  dmmfToRuntimeDataModel,
+  pruneRuntimeDataModel,
 } from '../../runtime/core/runtimeDataModel'
-import { escapeJson } from '../TSClient/helpers'
 import type { TSClientOptions } from '../TSClient/TSClient'
+import { escapeJson } from '../TSClient/helpers'
 
 /**
  * Given DMMF models, computes runtime datamodel from it and embeds

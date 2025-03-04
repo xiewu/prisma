@@ -1,9 +1,9 @@
-import Debug from '@prisma/debug'
 import type { ChildProcessByStdio } from 'node:child_process'
 import { fork } from 'node:child_process'
+import type { Readable, Writable } from 'node:stream'
+import Debug from '@prisma/debug'
 import { spawn } from 'cross-spawn'
 import { bold } from 'kleur/colors'
-import type { Readable, Writable } from 'node:stream'
 
 import byline from './byline'
 import type { GeneratorConfig, GeneratorManifest, GeneratorOptions, JsonRPC } from './types'

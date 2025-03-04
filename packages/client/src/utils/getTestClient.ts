@@ -1,3 +1,4 @@
+import path from 'node:path'
 import { getBinaryTargetForCurrentPlatform } from '@prisma/get-platform'
 import {
   ClientEngineType,
@@ -9,7 +10,6 @@ import {
   parseEnvValue,
   printConfigWarnings,
 } from '@prisma/internals'
-import path from 'node:path'
 import { parse } from 'stacktrace-parser'
 
 import { getDMMF } from '../generation/getDMMF'

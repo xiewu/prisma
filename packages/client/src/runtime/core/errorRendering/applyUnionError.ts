@@ -2,8 +2,8 @@ import { maxWithComparator } from '@prisma/internals'
 
 import type { EngineValidationError, InvalidArgumentTypeError, UnionError } from '../engines'
 import type { GlobalOmitOptions } from '../jsonProtocol/serializeJsonQuery'
-import { applyValidationError } from './applyValidationError'
 import type { ArgumentsRenderingTree } from './ArgumentsRenderingTree'
+import { applyValidationError } from './applyValidationError'
 
 type NonUnionError = Exclude<EngineValidationError, UnionError>
 

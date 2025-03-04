@@ -1,8 +1,8 @@
+import fs from 'node:fs'
+import path from 'node:path'
 import Debug from '@prisma/debug'
 import dotenv from 'dotenv'
-import fs from 'node:fs'
 import { bold, dim, red, underline, yellow } from 'kleur/colors'
-import path from 'node:path'
 
 import { dotenvExpand } from '../dotenvExpand'
 

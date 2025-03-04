@@ -1,4 +1,4 @@
-import { createFileNameToKeyMapper, type FileNameToKeyMapper } from './caseSensitivity'
+import { type FileNameToKeyMapper, createFileNameToKeyMapper } from './caseSensitivity'
 import type { CaseSensitivityOptions, FilesResolver, FsEntryType } from './types'
 
 type InMemoryNode = {

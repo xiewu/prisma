@@ -1,4 +1,4 @@
-import { neon, neonConfig, Pool as NeonPool } from '@neondatabase/serverless'
+import { Pool as NeonPool, neon, neonConfig } from '@neondatabase/serverless'
 // import { PrismaLibSQL } from '@prisma/adapter-libsql'
 import { PrismaNeon, PrismaNeonHTTP } from '@prisma/adapter-neon'
 import { PrismaPg } from '@prisma/adapter-pg'

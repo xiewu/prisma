@@ -1,17 +1,17 @@
-import Debug from '@prisma/debug'
-import type { DataSource, DMMF, GeneratorConfig } from '@prisma/generator-helper'
-import * as E from 'fp-ts/Either'
-import { pipe } from 'fp-ts/lib/function'
-import * as TE from 'fp-ts/TaskEither'
 import fs from 'node:fs'
+import Debug from '@prisma/debug'
+import type { DMMF, DataSource, GeneratorConfig } from '@prisma/generator-helper'
+import * as E from 'fp-ts/Either'
+import * as TE from 'fp-ts/TaskEither'
+import { pipe } from 'fp-ts/lib/function'
 import { bold, red } from 'kleur/colors'
 import { match } from 'ts-pattern'
 
-import { ErrorArea, getWasmError, isWasmPanic, RustPanic, type WasmPanic } from '../panic'
+import { ErrorArea, RustPanic, type WasmPanic, getWasmError, isWasmPanic } from '../panic'
 import { type SchemaFileInput, toMultipleSchemas } from '../utils/schemaFileInput'
 import { prismaSchemaWasm } from '../wasm'
 import { addVersionDetailsToErrorMessage } from './errorHelpers'
-import { createDebugErrorType, parseQueryEngineError, type QueryEngineErrorInit } from './queryEngineCommons'
+import { type QueryEngineErrorInit, createDebugErrorType, parseQueryEngineError } from './queryEngineCommons'
 
 const debug = Debug('prisma:getDMMF')
 

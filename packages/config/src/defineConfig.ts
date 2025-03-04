@@ -1,8 +1,8 @@
 import { Debug } from '@prisma/driver-adapter-utils'
 import type { DeepMutable } from 'effect/Types'
 
-import { defaultConfig } from './defaultConfig'
 import type { PrismaConfig, PrismaConfigInternal } from './PrismaConfig'
+import { defaultConfig } from './defaultConfig'
 
 export type { PrismaConfigInternal }
 

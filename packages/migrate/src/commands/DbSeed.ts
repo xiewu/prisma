@@ -1,5 +1,5 @@
 import type { PrismaConfigInternal } from '@prisma/config'
-import { arg, type Command, format, getSchemaWithPath, HelpError, isError, loadEnvFile } from '@prisma/internals'
+import { type Command, HelpError, arg, format, getSchemaWithPath, isError, loadEnvFile } from '@prisma/internals'
 import { ArgError } from 'arg'
 import { bold, dim, red } from 'kleur/colors'
 

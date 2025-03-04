@@ -2,7 +2,7 @@ import { expectTypeOf } from 'expect-type'
 
 import testMatrix from './_matrix'
 // @ts-ignore
-import type { Prisma as PrismaNamespace, PrismaClient } from './node_modules/@prisma/client'
+import type { PrismaClient, Prisma as PrismaNamespace } from './node_modules/@prisma/client'
 // @ts-ignore
 import type * as Sql from './node_modules/@prisma/client/sql'
 

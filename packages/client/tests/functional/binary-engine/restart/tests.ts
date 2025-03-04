@@ -1,6 +1,6 @@
+import type { ChildProcess } from 'node:child_process'
 import { faker } from '@faker-js/faker'
 import { ClientEngineType } from '@prisma/internals'
-import type { ChildProcess } from 'node:child_process'
 
 import type { NewPrismaClient } from '../../_utils/types'
 import testMatrix from './_matrix'

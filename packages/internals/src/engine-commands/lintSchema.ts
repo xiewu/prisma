@@ -1,7 +1,7 @@
 import { yellow } from 'kleur/colors'
 
-import { ErrorArea, getWasmError, RustPanic, type WasmPanic } from '../panic'
-import { debugMultipleSchemaPaths, type MultipleSchemas } from '../utils/schemaFileInput'
+import { ErrorArea, RustPanic, type WasmPanic, getWasmError } from '../panic'
+import { type MultipleSchemas, debugMultipleSchemaPaths } from '../utils/schemaFileInput'
 import { prismaSchemaWasm } from '../wasm'
 
 type LintSchemaParams = { schemas: MultipleSchemas }

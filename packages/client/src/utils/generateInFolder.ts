@@ -1,3 +1,7 @@
+import fs from 'node:fs'
+import path from 'node:path'
+import { performance } from 'node:perf_hooks'
+import { promisify } from 'node:util'
 import Debug from '@prisma/debug'
 import { getEnginesPath } from '@prisma/engines'
 import { getBinaryTargetForCurrentPlatform, getNodeAPIName } from '@prisma/get-platform'
@@ -11,11 +15,7 @@ import {
   getPackedPackage,
 } from '@prisma/internals'
 import copy from '@timsuchanek/copy'
-import fs from 'node:fs'
-import path from 'node:path'
-import { performance } from 'node:perf_hooks'
 import rimraf from 'rimraf'
-import { promisify } from 'node:util'
 
 import { generateClient } from '../generation/generateClient'
 import { ensureTestClientQueryEngine } from './ensureTestClientQueryEngine'

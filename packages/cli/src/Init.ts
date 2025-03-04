@@ -1,27 +1,27 @@
+import fs from 'node:fs'
+import path from 'node:path'
 import { confirm, input, select } from '@inquirer/prompts'
 import type { PrismaConfigInternal } from '@prisma/config'
 import type { ConnectorType } from '@prisma/generator-helper'
 import {
+  type Command,
+  HelpError,
+  PRISMA_POSTGRES_PROTOCOL,
+  PRISMA_POSTGRES_PROVIDER,
   arg,
   canConnectToDatabase,
   checkUnsupportedDataProxy,
-  type Command,
   format,
   getCommandWithExecutor,
-  HelpError,
   isError,
   link,
   logger,
-  PRISMA_POSTGRES_PROTOCOL,
-  PRISMA_POSTGRES_PROVIDER,
   protocolToConnectorType,
 } from '@prisma/internals'
 import dotenv from 'dotenv'
-import fs from 'node:fs'
 import { bold, dim, green, red, yellow } from 'kleur/colors'
 import ora from 'ora'
-import path from 'node:path'
-import { match, P } from 'ts-pattern'
+import { P, match } from 'ts-pattern'
 
 import { poll, printPpgInitOutput } from './platform/_'
 import { credentialsFile } from './platform/_lib/credentials'

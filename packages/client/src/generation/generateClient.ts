@@ -1,37 +1,37 @@
+import { createHash } from 'node:crypto'
+import { existsSync } from 'node:fs'
+import fs from 'node:fs/promises'
+import path from 'node:path'
 import Debug from '@prisma/debug'
 import { overwriteFile } from '@prisma/fetch-engine'
 import type {
   ActiveConnectorType,
   BinaryPaths,
   ConnectorType,
-  DataSource,
   DMMF,
+  DataSource,
   GeneratorConfig,
   SqlQueryOutput,
 } from '@prisma/generator-helper'
 import {
-  assertNever,
   ClientEngineType,
   type EnvPaths,
+  assertNever,
   getClientEngineType,
   pathToPosix,
   setClassName,
 } from '@prisma/internals'
-import { createHash } from 'node:crypto'
 import paths from 'env-paths'
-import { existsSync } from 'node:fs'
-import fs from 'node:fs/promises'
 import { ensureDir } from 'fs-extra'
 import { bold, dim, green, red } from 'kleur/colors'
-import path from 'node:path'
 import pkgUp from 'pkg-up'
 import type { O } from 'ts-toolbelt'
 
 import clientPkg from '../../package.json'
-import type { DMMF as PrismaClientDMMF } from './dmmf-types'
-import { getPrismaClientDMMF } from './getDMMF'
 import { BrowserJS, JS, TS, TSClient } from './TSClient'
 import type { TSClientOptions } from './TSClient/TSClient'
+import type { DMMF as PrismaClientDMMF } from './dmmf-types'
+import { getPrismaClientDMMF } from './getDMMF'
 import { buildTypedSql } from './typedSql/typedSql'
 
 const debug = Debug('prisma:client:generateClient')

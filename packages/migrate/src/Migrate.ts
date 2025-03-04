@@ -1,15 +1,15 @@
+import path from 'node:path'
 import { enginesVersion } from '@prisma/engines-version'
 import {
-  getGenerators,
-  getGeneratorSuccessMessage,
   type GetSchemaResult,
+  getGeneratorSuccessMessage,
+  getGenerators,
   getSchemaWithPath,
   isPrismaPostgres,
   toSchemasContainer,
 } from '@prisma/internals'
 import { dim } from 'kleur/colors'
 import logUpdate from 'log-update'
-import path from 'node:path'
 
 import { SchemaEngine } from './SchemaEngine'
 import type { EngineArgs, EngineResults } from './types'

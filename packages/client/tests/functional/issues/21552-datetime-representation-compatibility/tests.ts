@@ -1,6 +1,6 @@
-import execa from 'execa'
 import fs from 'node:fs/promises'
 import path from 'node:path'
+import execa from 'execa'
 
 import type { DatasourceInfo } from '../../_utils/setupTestSuiteEnv'
 import testMatrix from './_matrix'

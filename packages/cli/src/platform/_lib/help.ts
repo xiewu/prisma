@@ -1,4 +1,4 @@
-import { format, HelpError } from '@prisma/internals'
+import { HelpError, format } from '@prisma/internals'
 import { bold, dim, red } from 'kleur/colors'
 
 interface HelpContent {

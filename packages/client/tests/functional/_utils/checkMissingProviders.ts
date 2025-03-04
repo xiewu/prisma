@@ -1,4 +1,4 @@
-import type { getTestSuiteMeta, NamedTestSuiteConfig } from './getTestSuiteInfo'
+import type { NamedTestSuiteConfig, getTestSuiteMeta } from './getTestSuiteInfo'
 import { Providers } from './providers'
 import type { MatrixOptions } from './types'
 

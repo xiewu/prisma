@@ -1,7 +1,7 @@
+import path from 'node:path'
 import type { BinaryTarget } from '@prisma/get-platform'
 import { getNodeAPIName } from '@prisma/get-platform'
 import { ClientEngineType, parseAWSNodejsRuntimeEnvVarVersion, pathToPosix } from '@prisma/internals'
-import path from 'node:path'
 
 import { map } from '../../../../../helpers/blaze/map'
 

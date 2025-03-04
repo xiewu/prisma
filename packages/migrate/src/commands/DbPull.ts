@@ -1,27 +1,27 @@
+import path from 'node:path'
 import type { PrismaConfigInternal } from '@prisma/config'
 import Debug from '@prisma/debug'
 import {
+  type Command,
+  HelpError,
+  type MultipleSchemas,
   arg,
   checkUnsupportedDataProxy,
-  type Command,
   format,
   formatms,
   getCommandWithExecutor,
   getConfig,
   getSchema,
   getSchemaWithPathOptional,
-  HelpError,
   link,
   loadEnvFile,
   locateLocalCloudflareD1,
-  type MultipleSchemas,
   protocolToConnectorType,
   relativizePathInPSLError,
   toSchemasContainer,
 } from '@prisma/internals'
 import type { MigrateTypes } from '@prisma/internals'
 import { bold, dim, green, red, underline, yellow } from 'kleur/colors'
-import path from 'node:path'
 import { match } from 'ts-pattern'
 
 import { SchemaEngine } from '../SchemaEngine'

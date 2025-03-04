@@ -1,3 +1,6 @@
+import fs from 'node:fs'
+import path from 'node:path'
+import { promisify } from 'node:util'
 import { Debug } from '@prisma/debug'
 import type {
   GetSchemaResult,
@@ -7,14 +10,11 @@ import type {
   SuccessfulLookupResult,
 } from '@prisma/schema-files-loader'
 import { ensureType, loadSchemaFiles, usesPrismaSchemaFolder } from '@prisma/schema-files-loader'
-import fs from 'node:fs'
 import { green } from 'kleur/colors'
-import path from 'node:path'
 import { readPackageUp } from 'read-package-up'
-import { promisify } from 'node:util'
 
 import { getConfig } from '../engine-commands'
-import type { MultipleSchemas, MultipleSchemaTuple } from '../utils/schemaFileInput'
+import type { MultipleSchemaTuple, MultipleSchemas } from '../utils/schemaFileInput'
 
 const readFile = promisify(fs.readFile)
 const stat = promisify(fs.stat)

@@ -1,7 +1,7 @@
-import Debug from '@prisma/debug'
 import fs from 'node:fs'
-import { bold, dim } from 'kleur/colors'
 import path from 'node:path'
+import Debug from '@prisma/debug'
+import { bold, dim } from 'kleur/colors'
 
 import { logger } from '../../../..'
 import { resolvePkg } from './resolve'

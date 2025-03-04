@@ -1,5 +1,5 @@
-import { serialize } from '@prisma/get-platform/src/test-utils/jestSnapshotSerializer'
 import path from 'node:path'
+import { serialize } from '@prisma/get-platform/src/test-utils/jestSnapshotSerializer'
 import stripAnsi from 'strip-ansi'
 
 import { isRustPanic, validate } from '../..'

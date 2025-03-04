@@ -1,9 +1,9 @@
 import type { Client } from '../../getPrismaClient'
 import {
+  type CompositeProxyLayer,
   addObjectProperties,
   addProperty,
   cacheProperties,
-  type CompositeProxyLayer,
   createCompositeProxy,
 } from '../compositeProxy'
 import { applyModel } from './applyModel'

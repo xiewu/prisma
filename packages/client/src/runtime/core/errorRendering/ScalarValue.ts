@@ -1,6 +1,6 @@
-import type { ErrorWriter } from './base'
 import { FormattedString } from './FormattedString'
 import { Value } from './Value'
+import type { ErrorWriter } from './base'
 
 export class ScalarValue extends Value {
   constructor(readonly text: string) {

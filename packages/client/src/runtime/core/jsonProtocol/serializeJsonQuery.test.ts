@@ -5,7 +5,7 @@ import { MergedExtensionsList } from '../extensions/MergedExtensionsList'
 import { FieldRefImpl } from '../model/FieldRef'
 import { skip } from '../types'
 import { objectEnumValues } from '../types/exported/ObjectEnums'
-import { serializeJsonQuery, type SerializeParams } from './serializeJsonQuery'
+import { type SerializeParams, serializeJsonQuery } from './serializeJsonQuery'
 
 const User = model('User', [
   field('scalar', 'name', 'String'),

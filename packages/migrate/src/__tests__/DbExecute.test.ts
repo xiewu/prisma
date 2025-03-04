@@ -1,10 +1,10 @@
 // describeIf is making eslint unhappy about the test names
 /* eslint-disable jest/no-identical-title */
 
-import { defaultTestConfig } from '@prisma/config'
-import { jestConsoleContext, jestContext } from '@prisma/get-platform'
 import fs from 'node:fs'
 import path from 'node:path'
+import { defaultTestConfig } from '@prisma/config'
+import { jestConsoleContext, jestContext } from '@prisma/get-platform'
 
 import { DbExecute } from '../commands/DbExecute'
 import { setupCockroach, tearDownCockroach } from '../utils/setupCockroach'

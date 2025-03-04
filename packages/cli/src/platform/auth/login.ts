@@ -1,9 +1,9 @@
+import http from 'node:http'
 import { select } from '@inquirer/prompts'
 import type { PrismaConfigInternal } from '@prisma/config'
 import Debug from '@prisma/debug'
-import { arg, type Command, getCommandWithExecutor, isError, link } from '@prisma/internals'
+import { type Command, arg, getCommandWithExecutor, isError, link } from '@prisma/internals'
 import listen from 'async-listen'
-import http from 'node:http'
 import { green } from 'kleur/colors'
 import open from 'open'
 

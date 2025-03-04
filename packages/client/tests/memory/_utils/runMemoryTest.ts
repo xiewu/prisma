@@ -4,11 +4,11 @@ import fs from 'node:fs/promises'
 import { bold, green, red, white } from 'kleur/colors'
 import { linearRegression } from 'simple-statistics'
 
+import type { MemoryTestDir } from './MemoryTestDir'
 import { buildMemoryTest } from './buildMemoryTest'
 import { WARMUP_ITERATIONS } from './commonSettings'
 import { dropMemoryTestDatabase, setupMemoryTestDatabase } from './database'
 import { generateMemoryTestClient } from './generateMemoryTestClient'
-import type { MemoryTestDir } from './MemoryTestDir'
 
 const GROWTH_RATE_THRESHOLD_IN_BYTES = 10
 

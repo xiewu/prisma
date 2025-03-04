@@ -1,4 +1,4 @@
-import { isPrismaPostgres, PRISMA_POSTGRES_PROTOCOL } from './prismaPostgres'
+import { PRISMA_POSTGRES_PROTOCOL, isPrismaPostgres } from './prismaPostgres'
 
 describe('isPrismaPostgres', () => {
   test('returns false on invalid or non Prisma Postgres protocols', () => {

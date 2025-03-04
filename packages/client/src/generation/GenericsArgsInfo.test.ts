@@ -1,7 +1,7 @@
 import type { DMMF } from '@prisma/generator-helper'
 
-import { DMMFHelper } from './dmmf'
 import { GenericArgsInfo } from './GenericsArgsInfo'
+import { DMMFHelper } from './dmmf'
 
 function inputObjectType(name: string, fields: DMMF.SchemaArg[], meta?: { source: string }): DMMF.InputType {
   return {

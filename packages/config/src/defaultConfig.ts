@@ -1,6 +1,6 @@
 import type { DeepMutable } from 'effect/Types'
 
-import { makePrismaConfigInternal, type PrismaConfigInternal } from './PrismaConfig'
+import { type PrismaConfigInternal, makePrismaConfigInternal } from './PrismaConfig'
 
 /**
  * All default values for the config shall be set here.

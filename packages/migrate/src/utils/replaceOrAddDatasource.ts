@@ -1,4 +1,4 @@
-import { assertAlways, type MultipleSchemas } from '@prisma/internals'
+import { type MultipleSchemas, assertAlways } from '@prisma/internals'
 
 export function replaceOrAddDatasource(newDatasource: string, files: MultipleSchemas): MultipleSchemas {
   let replaced = false

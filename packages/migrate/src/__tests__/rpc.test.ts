@@ -1,7 +1,7 @@
-import { jestConsoleContext, jestContext } from '@prisma/get-platform'
-import { getSchema, getSchemaWithPath, type MultipleSchemas, toSchemasContainer } from '@prisma/internals'
-import fs from 'fs-jetpack'
 import path from 'node:path'
+import { jestConsoleContext, jestContext } from '@prisma/get-platform'
+import { type MultipleSchemas, getSchema, getSchemaWithPath, toSchemasContainer } from '@prisma/internals'
+import fs from 'fs-jetpack'
 
 import { Migrate } from '../Migrate'
 
