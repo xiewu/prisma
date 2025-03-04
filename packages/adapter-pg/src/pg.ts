@@ -149,13 +149,13 @@ class PgTransaction extends PgQueryable<TransactionClient> implements Transactio
   }
 
   async commit(): Promise<void> {
-    debug(`[js::commit]`)
+    debug('[js::commit]')
 
     this.client.release()
   }
 
   async rollback(): Promise<void> {
-    debug(`[js::rollback]`)
+    debug('[js::rollback]')
 
     this.client.release()
   }
@@ -234,7 +234,7 @@ export class PrismaPgWithMigration implements SqlMigrationAwareDriverAdapter {
   }
 
   async connectToShadowDb(): Promise<SqlConnection> {
-    const crypto = await import('crypto')
+    const crypto = await import('node:crypto')
 
     const conn = await this.connect()
     const database = `prisma_migrate_shadow_db_${crypto.randomUUID()}`
