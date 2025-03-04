@@ -17,9 +17,7 @@
     "test": "jest",
     "prepublishOnly": "pnpm run build"
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "sideEffects": false,
   "dependencies": {
     "@prisma/prisma-schema-wasm": "6.5.0-39.84310176c3f15859928b573ea73f2c1ec30188eb",

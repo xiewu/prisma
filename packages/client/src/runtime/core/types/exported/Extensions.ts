@@ -53,34 +53,44 @@ export type GetOmit<BaseKeys extends string, R extends InternalArgs['result'][st
 /** Query */
 
 // prettier-ignore
-export type DynamicQueryExtensionArgs<
-  Q_, 
-  TypeMap extends TypeMapDef,
-> = {
-  [K in keyof Q_]:
-    K extends '$allOperations'
-    ? (args: { model?: string, operation: string, args: any, query: (args: any) => PrismaPromise<any> }) => Promise<any>
+export type DynamicQueryExtensionArgs<Q_, TypeMap extends TypeMapDef> = {
+  [K in keyof Q_]: K extends '$allOperations'
+    ? (args: { model?: string; operation: string; args: any; query: (args: any) => PrismaPromise<any> }) => Promise<any>
     : K extends '$allModels'
       ? {
-          [P in keyof Q_[K] | keyof TypeMap['model'][keyof TypeMap['model']]['operations'] | '$allOperations']?:
-            P extends '$allOperations'
-            ? DynamicQueryExtensionCb<TypeMap, 'model', keyof TypeMap['model'], keyof TypeMap['model'][keyof TypeMap['model']]['operations']>
+          [P in
+            | keyof Q_[K]
+            | keyof TypeMap['model'][keyof TypeMap['model']]['operations']
+            | '$allOperations']?: P extends '$allOperations'
+            ? DynamicQueryExtensionCb<
+                TypeMap,
+                'model',
+                keyof TypeMap['model'],
+                keyof TypeMap['model'][keyof TypeMap['model']]['operations']
+              >
             : P extends keyof TypeMap['model'][keyof TypeMap['model']]['operations']
               ? DynamicQueryExtensionCb<TypeMap, 'model', keyof TypeMap['model'], P>
               : never
         }
       : K extends TypeMap['meta']['modelProps']
         ? {
-            [P in keyof Q_[K] | keyof TypeMap['model'][ModelKey<TypeMap, K>]['operations'] | '$allOperations']?:
-              P extends '$allOperations'
-              ? DynamicQueryExtensionCb<TypeMap, 'model', ModelKey<TypeMap, K>, keyof TypeMap['model'][ModelKey<TypeMap, K>]['operations']>
+            [P in
+              | keyof Q_[K]
+              | keyof TypeMap['model'][ModelKey<TypeMap, K>]['operations']
+              | '$allOperations']?: P extends '$allOperations'
+              ? DynamicQueryExtensionCb<
+                  TypeMap,
+                  'model',
+                  ModelKey<TypeMap, K>,
+                  keyof TypeMap['model'][ModelKey<TypeMap, K>]['operations']
+                >
               : P extends keyof TypeMap['model'][ModelKey<TypeMap, K>]['operations']
                 ? DynamicQueryExtensionCb<TypeMap, 'model', ModelKey<TypeMap, K>, P>
                 : never
           }
-      : K extends keyof TypeMap['other']['operations']
-        ? DynamicQueryExtensionCb<[TypeMap], 0 /* hack to maintain type arity */, 'other', K>
-        : never
+        : K extends keyof TypeMap['other']['operations']
+          ? DynamicQueryExtensionCb<[TypeMap], 0 /* hack to maintain type arity */, 'other', K>
+          : never
 }
 
 // prettier-ignore
@@ -89,9 +99,7 @@ export type DynamicQueryExtensionCb<
   _0 extends PropertyKey,
   _1 extends PropertyKey,
   _2 extends PropertyKey,
-> =
-  <A extends DynamicQueryExtensionCbArgs<TypeMap, _0, _1, _2>>(args: A) =>
-    Promise<TypeMap[_0][_1][_2]['result']>
+> = <A extends DynamicQueryExtensionCbArgs<TypeMap, _0, _1, _2>>(args: A) => Promise<TypeMap[_0][_1][_2]['result']>
 
 // prettier-ignore
 export type DynamicQueryExtensionCbArgs<
@@ -99,19 +107,23 @@ export type DynamicQueryExtensionCbArgs<
   _0 extends PropertyKey,
   _1 extends PropertyKey,
   _2 extends PropertyKey,
-> =
-  ( // we distribute over the union of models and operations to allow narrowing
-    _1 extends unknown ? _2 extends unknown ? {
-      args: DynamicQueryExtensionCbArgsArgs<TypeMap, _0, _1, _2>,
-      model: _0 extends 0 ? undefined : _1,
-      operation: _2,
-      query: <A extends DynamicQueryExtensionCbArgsArgs<TypeMap, _0, _1, _2>>(args: A) =>
-        PrismaPromise<TypeMap[_0][_1]['operations'][_2]['result']>
-    } : never : never
-  ) & { // but we don't distribute for query so that the input types stay union
-    query: (args: DynamicQueryExtensionCbArgsArgs<TypeMap, _0, _1, _2>) =>
-      PrismaPromise<TypeMap[_0][_1]['operations'][_2]['result']>
-  }
+> = (_1 extends unknown // we distribute over the union of models and operations to allow narrowing
+  ? _2 extends unknown
+    ? {
+        args: DynamicQueryExtensionCbArgsArgs<TypeMap, _0, _1, _2>
+        model: _0 extends 0 ? undefined : _1
+        operation: _2
+        query: <A extends DynamicQueryExtensionCbArgsArgs<TypeMap, _0, _1, _2>>(
+          args: A,
+        ) => PrismaPromise<TypeMap[_0][_1]['operations'][_2]['result']>
+      }
+    : never
+  : never) & {
+  // but we don't distribute for query so that the input types stay union
+  query: (
+    args: DynamicQueryExtensionCbArgsArgs<TypeMap, _0, _1, _2>,
+  ) => PrismaPromise<TypeMap[_0][_1]['operations'][_2]['result']>
+}
 
 export type DynamicQueryExtensionCbArgsArgs<
   TypeMap extends TypeMapDef,
@@ -149,49 +161,45 @@ export type DynamicResultExtensionData<TypeMap extends TypeMapDef, M extends Pro
 
 // prettier-ignore
 export type DynamicModelExtensionArgs<
-  M_, 
-  TypeMap extends TypeMapDef, 
-  TypeMapCb extends TypeMapCbDef, 
+  M_,
+  TypeMap extends TypeMapDef,
+  TypeMapCb extends TypeMapCbDef,
   ExtArgs extends Record<string, any>,
-  ClientOptions
+  ClientOptions,
 > = {
-  [K in keyof M_]:
-    K extends '$allModels'
-    ? & { [P in keyof M_[K]]?: unknown }
-      & { [K: symbol]: {} }
+  [K in keyof M_]: K extends '$allModels'
+    ? { [P in keyof M_[K]]?: unknown } & { [K: symbol]: {} }
     : K extends TypeMap['meta']['modelProps']
-      ? & { [P in keyof M_[K]]?: unknown }
-        & {
-            [K: symbol]: {
-              ctx: & DynamicModelExtensionThis<TypeMap, ModelKey<TypeMap, K>, ExtArgs, ClientOptions>
-                   & { $parent: DynamicClientExtensionThis<TypeMap, TypeMapCb, ExtArgs, ClientOptions> } 
-                   & { $name: ModelKey<TypeMap, K> }
-                   & {
-                      /**
-                       * @deprecated Use `$name` instead.
-                       */
-                      name: ModelKey<TypeMap, K>
-                    }
+      ? { [P in keyof M_[K]]?: unknown } & {
+          [K: symbol]: {
+            ctx: DynamicModelExtensionThis<TypeMap, ModelKey<TypeMap, K>, ExtArgs, ClientOptions> & {
+              $parent: DynamicClientExtensionThis<TypeMap, TypeMapCb, ExtArgs, ClientOptions>
+            } & { $name: ModelKey<TypeMap, K> } & {
+              /**
+               * @deprecated Use `$name` instead.
+               */
+              name: ModelKey<TypeMap, K>
             }
           }
+        }
       : never
 }
 
 // prettier-ignore
 export type DynamicModelExtensionThis<
-  TypeMap extends TypeMapDef, 
-  M extends PropertyKey, 
+  TypeMap extends TypeMapDef,
+  M extends PropertyKey,
   ExtArgs extends Record<string, any>,
-  ClientOptions
+  ClientOptions,
 > = {
-  [P in keyof ExtArgs['model'][Uncapitalize<M & string>]]:
-    Return<ExtArgs['model'][Uncapitalize<M & string>][P]>
+  [P in keyof ExtArgs['model'][Uncapitalize<M & string>]]: Return<ExtArgs['model'][Uncapitalize<M & string>][P]>
 } & {
-  [P in Exclude<keyof TypeMap['model'][M]['operations'], keyof ExtArgs['model'][Uncapitalize<M & string>]>]:
-    DynamicModelExtensionOperationFn<TypeMap, M, P, ClientOptions>
+  [P in Exclude<
+    keyof TypeMap['model'][M]['operations'],
+    keyof ExtArgs['model'][Uncapitalize<M & string>]
+  >]: DynamicModelExtensionOperationFn<TypeMap, M, P, ClientOptions>
 } & {
-  [P in Exclude<'fields', keyof ExtArgs['model'][Uncapitalize<M & string>]>]:
-    TypeMap['model'][M]['fields'] 
+  [P in Exclude<'fields', keyof ExtArgs['model'][Uncapitalize<M & string>]>]: TypeMap['model'][M]['fields']
 } & {
   [K: symbol]: { types: TypeMap['model'][M] }
 }
@@ -216,10 +224,10 @@ export type DynamicModelExtensionFnResult<
   A,
   P extends PropertyKey,
   Null,
-  ClientOptions
+  ClientOptions,
 > = P extends FluentOperation
-  ? & DynamicModelExtensionFluentApi<TypeMap, M, P, Null, ClientOptions>
-    & PrismaPromise<DynamicModelExtensionFnResultBase<TypeMap, M, A, P, ClientOptions> | Null>
+  ? DynamicModelExtensionFluentApi<TypeMap, M, P, Null, ClientOptions> &
+      PrismaPromise<DynamicModelExtensionFnResultBase<TypeMap, M, A, P, ClientOptions> | Null>
   : PrismaPromise<DynamicModelExtensionFnResultBase<TypeMap, M, A, P, ClientOptions>>
 
 export type DynamicModelExtensionFnResultBase<
@@ -240,9 +248,10 @@ export type DynamicModelExtensionFluentApi<
 > = {
   [K in keyof TypeMap['model'][M]['payload']['objects']]: <A>(
     args?: Exact<A, Path<TypeMap['model'][M]['operations'][P]['args']['select'], [K]>>,
-  ) => 
-    & PrismaPromise<Path<DynamicModelExtensionFnResultBase<TypeMap, M, { select: { [P in K]: A } }, P, ClientOptions>, [K]> | Null>
-    & DynamicModelExtensionFluentApi<
+  ) => PrismaPromise<
+    Path<DynamicModelExtensionFnResultBase<TypeMap, M, { select: { [P in K]: A } }, P, ClientOptions>, [K]> | Null
+  > &
+    DynamicModelExtensionFluentApi<
       TypeMap,
       (TypeMap['model'][M]['payload']['objects'][K] & {})['name'],
       P,
@@ -252,8 +261,9 @@ export type DynamicModelExtensionFluentApi<
 }
 
 // prettier-ignore
-export type DynamicModelExtensionFnResultNull<P extends PropertyKey> =
-  P extends 'findUnique' | 'findFirst' ? null : never
+export type DynamicModelExtensionFnResultNull<P extends PropertyKey> = P extends 'findUnique' | 'findFirst'
+  ? null
+  : never
 
 /** Client */
 
@@ -278,17 +288,27 @@ export type DynamicClientExtensionThis<
   TypeMap extends TypeMapDef,
   TypeMapCb extends TypeMapCbDef,
   ExtArgs extends Record<string, any>,
-  ClientOptions
+  ClientOptions,
 > = {
   [P in keyof ExtArgs['client']]: Return<ExtArgs['client'][P]>
 } & {
-  [P in Exclude<TypeMap['meta']['modelProps'], keyof ExtArgs['client']>]:
-    DynamicModelExtensionThis<TypeMap, ModelKey<TypeMap, P>, ExtArgs, ClientOptions>
+  [P in Exclude<TypeMap['meta']['modelProps'], keyof ExtArgs['client']>]: DynamicModelExtensionThis<
+    TypeMap,
+    ModelKey<TypeMap, P>,
+    ExtArgs,
+    ClientOptions
+  >
 } & {
-  [P in Exclude<keyof TypeMap['other']['operations'], keyof ExtArgs['client']>]: P extends keyof ClientOtherOps ? ClientOtherOps[P] : never
+  [P in Exclude<keyof TypeMap['other']['operations'], keyof ExtArgs['client']>]: P extends keyof ClientOtherOps
+    ? ClientOtherOps[P]
+    : never
 } & {
-  [P in Exclude<ClientBuiltInProp, keyof ExtArgs['client']>]:
-    DynamicClientExtensionThisBuiltin<TypeMap, TypeMapCb, ExtArgs, ClientOptions>[P]
+  [P in Exclude<ClientBuiltInProp, keyof ExtArgs['client']>]: DynamicClientExtensionThisBuiltin<
+    TypeMap,
+    TypeMapCb,
+    ExtArgs,
+    ClientOptions
+  >[P]
 } & {
   [K: symbol]: { types: TypeMap['other'] }
 }
