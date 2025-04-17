@@ -171,8 +171,7 @@ export class QueryInterpreter {
 
       case 'dataMap': {
         const data = await this.interpretNode(node.args.expr, queryable, scope, generators)
-        const mappedData = applyDataMap(data, node.args.structure)
-        return mappedData
+        return applyDataMap(data, node.args.structure)
       }
 
       default:
