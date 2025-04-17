@@ -35,8 +35,6 @@ function mapArrayOrObject(data: Value, fields: Record<string, ResultNode>): Pris
 
 // Recursive
 function mapObject(data: PrismaObject, fields: Record<string, ResultNode>): PrismaObject {
-  // console.error(`mapObject(data: ${JSON.stringify(data)}, fields: ${JSON.stringify(fields)})`)
-
   if (typeof data !== 'object') {
     throw new Error(`DataMapper[2]: Expected an object, but got '${typeof data}'`)
   }
@@ -75,7 +73,6 @@ function mapObject(data: PrismaObject, fields: Record<string, ResultNode>): Pris
 }
 
 function mapValue(value: unknown, resultType: PrismaValueType): unknown {
-  // console.error(`mapValue(value: ${value}, resultType: ${resultType})`)
   if (typeof resultType === 'string') {
     switch (resultType) {
       case 'any':
