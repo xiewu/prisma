@@ -36,7 +36,7 @@ export type PrismaValueType =
   | 'bytes'
   | { type: 'array'; inner: PrismaValueType }
 
-type ResultNode =
+export type ResultNode =
   | {
       type: 'object'
       fields: Record<string, ResultNode>

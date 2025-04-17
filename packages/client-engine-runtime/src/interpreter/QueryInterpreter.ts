@@ -7,6 +7,7 @@ import { providerToOtelSystem, type TracingHelper } from '../tracing'
 import { type TransactionManager } from '../transactionManager/TransactionManager'
 import { rethrowAsUserFacing } from '../UserFacingError'
 import { assertNever } from '../utils'
+import { applyDataMap } from './DataMapper'
 import { GeneratorRegistry, GeneratorRegistrySnapshot } from './generators'
 import { renderQuery } from './renderQuery'
 import { PrismaObject, ScopeBindings, Value } from './scope'
@@ -169,7 +170,9 @@ export class QueryInterpreter {
       }
 
       case 'dataMap': {
-        return this.interpretNode(node.args.expr, queryable, scope, generators)
+        const data = await this.interpretNode(node.args.expr, queryable, scope, generators)
+        const mappedData = applyDataMap(data, node.args.structure)
+        return mappedData
       }
 
       default:
