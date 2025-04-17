@@ -18,7 +18,7 @@ export function applyDataMap(data: Value, structure: ResultNode): Value {
         const row = data as PrismaObject
         return mapObject(row, structure.fields)
       }
-      throw new Error(`DataMapper[1]: Expected and array or an object, got: ${typeof data}`)
+      throw new Error(`DataMapper[1]: Expected an array or an object, got: ${typeof data}`)
 
     case 'value':
       return mapValue(data, structure.resultType)
@@ -102,7 +102,7 @@ function mapValue(value: unknown, resultType: PrismaValueType): unknown {
         return typeof value === 'object' ? value : { value: value }
       case 'bytes':
         if (typeof value !== 'string') {
-          throw new Error('DataMapper[6]: Bytes data is not a string')
+          throw new Error(`DataMapper[6]: Bytes data is not a string, got: ${typeof value}`)
         }
         return value
       default:
