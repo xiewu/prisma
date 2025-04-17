@@ -168,6 +168,10 @@ export class QueryInterpreter {
         }
       }
 
+      case 'dataMap': {
+        return this.interpretNode(node.args.expr, queryable, scope, generators)
+      }
+
       default:
         assertNever(node, `Unexpected node type: ${(node as { type: unknown }).type}`)
     }
