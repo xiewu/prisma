@@ -11,14 +11,7 @@ export function applyDataMap(data: Value, structure: ResultNode): Value {
 
   switch (structure.type) {
     case 'object':
-      if (Array.isArray(data)) {
-        const rows = data as PrismaObject[]
-        return rows.map((row) => mapObject(row, structure.fields))
-      } else if (typeof data === 'object') {
-        const row = data as PrismaObject
-        return mapObject(row, structure.fields)
-      }
-      throw new Error(`DataMapper[1]: Expected an array or an object, got: ${typeof data}`)
+      return mapArrayOrObject(data, structure.fields)
 
     case 'value':
       return mapValue(data, structure.resultType)
@@ -27,6 +20,20 @@ export function applyDataMap(data: Value, structure: ResultNode): Value {
       // @ts-ignore
       assertNever(structure, `Invalid data mapping type: '${structure.type}'`)
   }
+}
+
+function mapArrayOrObject(data: Value, fields: Record<string, ResultNode>): PrismaObject | PrismaObject[] {
+  if (Array.isArray(data)) {
+    const rows = data as PrismaObject[]
+    return rows.map((row) => mapObject(row, fields))
+  }
+
+  if (typeof data === 'object') {
+    const row = data as PrismaObject
+    return mapObject(row, fields)
+  }
+
+  throw new Error(`DataMapper[1]: Expected an array or an object, got: ${typeof data}`)
 }
 
 // Recursive
@@ -42,18 +49,10 @@ function mapObject(data: PrismaObject, fields: Record<string, ResultNode>): Pris
     switch (node.type) {
       case 'object':
         if (name in data) {
-          const nested = data[name]
-          if (Array.isArray(nested)) {
-            const rows = nested as PrismaObject[]
-            result[name] = rows.map((row) => mapObject(row, node.fields))
-          } else if (typeof nested === 'object') {
-            result[name] = mapObject(nested as PrismaObject, node.fields)
-          } else {
-            throw new Error(`DataMapper[3]: Expected an array or an object, but got '${typeof nested}'`)
-          }
+          result[name] = mapArrayOrObject(data[name], node.fields)
         } else {
           throw new Error(
-            `DataMapper[4]: Missing data field: '${name}'; ` +
+            `DataMapper[3]: Missing data field: '${name}'; ` +
               `node: ${JSON.stringify(node)}; data: ${JSON.stringify(data)}`,
           )
         }
@@ -64,7 +63,7 @@ function mapObject(data: PrismaObject, fields: Record<string, ResultNode>): Pris
           result[name] = mapValue(data[node.dbName], node.resultType)
         } else {
           throw new Error(
-            `DataMapper[5]: Missing data field: '${node.dbName}'; ` +
+            `DataMapper[4]: Missing data field: '${node.dbName}'; ` +
               `node: ${JSON.stringify(node)}; data: ${JSON.stringify(data)}`,
           )
         }
@@ -102,7 +101,7 @@ function mapValue(value: unknown, resultType: PrismaValueType): unknown {
         return typeof value === 'object' ? value : { value: value }
       case 'bytes':
         if (typeof value !== 'string') {
-          throw new Error(`DataMapper[6]: Bytes data is not a string, got: ${typeof value}`)
+          throw new Error(`DataMapper[5]: Bytes data is not a string, got: ${typeof value}`)
         }
         return value
       default:
@@ -114,7 +113,7 @@ function mapValue(value: unknown, resultType: PrismaValueType): unknown {
       mapValue(v, resultType.inner)
     })
   }
-  throw new Error(`DataMapper[7]: Invalid resultType: ${JSON.stringify(resultType)}`)
+  throw new Error(`DataMapper[6]: Invalid resultType: ${JSON.stringify(resultType)}`)
 }
 
 /* Example data recorded by running the `queries::simple::one2m::simple::simple` QE test case:
