@@ -1,5 +1,4 @@
-import { PrismaValueType, ResultNode } from '@prisma/client-engine-runtime'
-
+import { PrismaValueType, ResultNode } from '../QueryPlan'
 import { assertNever } from '../utils'
 import { PrismaObject, Value } from './scope'
 
