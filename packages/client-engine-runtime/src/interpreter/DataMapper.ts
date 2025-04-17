@@ -4,9 +4,6 @@ import { assertNever } from '../utils'
 import { PrismaObject, Value } from './scope'
 
 export function applyDataMap(data: Value, structure: ResultNode): Value {
-  // console.error(`data = ${JSON.stringify(data, null, 2)}`)
-  // console.error(`structure = ${JSON.stringify(structure, null, 2)}`)
-
   if (data === null) return null
 
   switch (structure.type) {
