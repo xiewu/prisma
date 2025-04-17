@@ -3,8 +3,6 @@ import { assertNever } from '../utils'
 import { PrismaObject, Value } from './scope'
 
 export function applyDataMap(data: Value, structure: ResultNode): Value {
-  if (data === null) return null
-
   switch (structure.type) {
     case 'object':
       return mapArrayOrObject(data, structure.fields)
@@ -18,7 +16,9 @@ export function applyDataMap(data: Value, structure: ResultNode): Value {
   }
 }
 
-function mapArrayOrObject(data: Value, fields: Record<string, ResultNode>): PrismaObject | PrismaObject[] {
+function mapArrayOrObject(data: Value, fields: Record<string, ResultNode>): PrismaObject | PrismaObject[] | null {
+  if (data === null) return null
+
   if (Array.isArray(data)) {
     const rows = data as PrismaObject[]
     return rows.map((row) => mapObject(row, fields))
@@ -72,6 +72,8 @@ function mapObject(data: PrismaObject, fields: Record<string, ResultNode>): Pris
 }
 
 function mapValue(value: unknown, resultType: PrismaValueType): unknown {
+  if (value === null) return null
+
   if (typeof resultType === 'string') {
     switch (resultType) {
       case 'any':
